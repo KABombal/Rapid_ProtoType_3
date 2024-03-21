@@ -13,10 +13,7 @@ public class SpiderAnimator : MonoBehaviour
     private TwoBoneIKConstraint[] legIkRigs = null;
 
     [SerializeField]
-    private Transform[] leyRayOrigins = null;
-
-    [SerializeField]
-    private Transform hips = null;
+    private Transform[] legRayOrigins = null;
 
     [SerializeField]
     private AnimationCurve stepYCurve;
@@ -33,25 +30,26 @@ public class SpiderAnimator : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer = new LayerMask();
 
+    [SerializeField]
+    private float velocityForwardFactor = 0.1f;
+
+    [SerializeField]
+    private float velocityForwardCap = 0.02f;
 
     // store original target positions at start
     [SerializeField, HideInInspector]
-    private Vector3[] initialTargetOffsets;
+    private Vector3[] targetRestPositions;
 
+    [SerializeField, HideInInspector]
     private Vector3[] targetWorldPositions;
 
     private bool[] groundedFoot;
+    private Vector3 velocity;
+    private Vector3 positionLastFrame;
 
-    private float legTimer;
-    public float Speed { get; set; }
-
-
-    private void Start()
+    private void OnValidate()
     {
-        // base all non-serialized arrays on length of a serialized one
-
-        groundedFoot = Enumerable.Repeat(true, legIkRigs.Length).ToArray();
-        initialTargetOffsets = new Vector3[legIkRigs.Length];
+        targetRestPositions = new Vector3[legIkRigs.Length];
         targetWorldPositions = new Vector3[legIkRigs.Length];
 
         for (int i = 0; i < legIkRigs.Length; i++)
@@ -59,12 +57,34 @@ public class SpiderAnimator : MonoBehaviour
             var targ = legIkRigs[i].data.target;
             targetWorldPositions[i] = targ.position;
 
-            initialTargetOffsets[i] = Quaternion.Inverse(transform.rotation) * (targ.position - transform.position);
+            targetRestPositions[i] = Quaternion.Inverse(transform.rotation) * (targ.position - transform.position);
+        }
+    }
+    private void Start()
+    {
+        // base all non-serialized arrays on length of a serialized one
+
+        positionLastFrame = transform.position;
+        groundedFoot = Enumerable.Repeat(true, legIkRigs.Length).ToArray();
+
+        targetRestPositions = new Vector3[legIkRigs.Length];
+        targetWorldPositions = new Vector3[legIkRigs.Length];
+
+        for (int i = 0; i < legIkRigs.Length; i++)
+        {
+            var targ = legIkRigs[i].data.target;
+            targetWorldPositions[i] = targ.position;
+
+            targetRestPositions[i] = Quaternion.Inverse(transform.rotation) * (targ.position - transform.position);
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        velocity = (transform.position - positionLastFrame) / Time.deltaTime;
+
+        positionLastFrame = transform.position;
+
         for (int i = 0; i < legIkRigs.Length; i++)
         {
             var targ = legIkRigs[i].data.target;
@@ -78,7 +98,7 @@ public class SpiderAnimator : MonoBehaviour
                 
                 if (CanStep(i) && (want.Value - targetWorldPositions[i]).sqrMagnitude > strideDist * strideDist)
                 {
-                    StartCoroutine(Step(i, want.Value));
+                    StartCoroutine(Step(i));
                 }
             }
             else
@@ -96,9 +116,10 @@ public class SpiderAnimator : MonoBehaviour
 
     private Vector3? FindFooting(int leg)
     {
-        Vector3 a = transform.position + transform.rotation * initialTargetOffsets[leg];
+        Vector3 restPosWorldSpace = transform.position + transform.rotation * targetRestPositions[leg];
 
-        Ray ray = new Ray(leyRayOrigins[leg].position, (a - leyRayOrigins[leg].position).normalized);
+        Vector3 velocityOffset = Vector3.ClampMagnitude(velocity * velocityForwardFactor, velocityForwardCap);
+        Ray ray = new Ray(legRayOrigins[leg].position, (restPosWorldSpace - (legRayOrigins[leg].position - velocityOffset)).normalized);
 
         if (Physics.Raycast(ray, out RaycastHit hit, legLength, groundLayer))
         {
@@ -119,7 +140,8 @@ public class SpiderAnimator : MonoBehaviour
         return oppositeGrounded && (adjacentAGrounded || adjacentBGrounded);
 
     }
-    private IEnumerator Step(int leg, Vector3 to)
+
+    private IEnumerator Step(int leg)
     {
         groundedFoot[leg] = false;
         float t = 0;
@@ -127,39 +149,40 @@ public class SpiderAnimator : MonoBehaviour
         Transform targ = legIkRigs[leg].data.target;
 
         Vector3 from = targ.position;
+        Vector3? to = FindFooting(leg);
 
         while (t < 1)
         {
-            targ.position = Vector3.Lerp(from, to, t);
+            to = FindFooting(leg);
+            if (!to.HasValue) yield break;
+
+            targ.position = Vector3.Lerp(from, to.Value, t);
             targ.Translate(transform.up * stepYCurve.Evaluate(t));
 
             t += Time.deltaTime / stepDuration;
             yield return null;
         }
-        
-        targ.position = targetWorldPositions[leg] = to;
+
+        targ.position = targetWorldPositions[leg] = to.Value;
 
         groundedFoot[leg] = true;
     }
 
-    private Vector3 CalcHipRotor()
-    {
-        return Vector3.zero;
-    }
-
-    private Vector3 CalcHipElevation()
-    {
-        return Vector3.zero;
-    }
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < leyRayOrigins.Length; i++)
+        for (int i = 0; i < legRayOrigins.Length; i++)
         {
-            Vector3 a = transform.position + transform.rotation * initialTargetOffsets[i];
+            Vector3 restPosWorldSpace = transform.position + transform.rotation * targetRestPositions[i];
 
-            Ray ray = new Ray(leyRayOrigins[i].position, (a - leyRayOrigins[i].position).normalized);
+            Vector3 velocityOffset = Vector3.ClampMagnitude(velocity * velocityForwardFactor, velocityForwardCap);
+            Ray ray = new Ray(legRayOrigins[i].position, (restPosWorldSpace - (legRayOrigins[i].position - velocityOffset)).normalized);
 
-            Gizmos.color = i % 2 == 0 ? Color.green : Color.red;
+            Color color = i % 2 == 0 ? Color.green : Color.red;
+            color *= 1 - (float)i / legRayOrigins.Length;
+            color.a = 1;
+
+            Gizmos.color = color;
+
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * legLength);
         }
     }
