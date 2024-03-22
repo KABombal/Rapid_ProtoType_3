@@ -44,6 +44,7 @@ public class SpiderAnimator : MonoBehaviour
     private Vector3[] targetWorldPositions;
 
     private bool[] groundedFoot;
+    private bool[] attachedFoot;
     private Vector3 velocity;
     private Vector3 positionLastFrame;
 
@@ -66,6 +67,7 @@ public class SpiderAnimator : MonoBehaviour
 
         positionLastFrame = transform.position;
         groundedFoot = Enumerable.Repeat(true, legIkRigs.Length).ToArray();
+        attachedFoot = Enumerable.Repeat(false, legIkRigs.Length).ToArray();
 
         targetRestPositions = new Vector3[legIkRigs.Length];
         targetWorldPositions = new Vector3[legIkRigs.Length];
@@ -79,7 +81,7 @@ public class SpiderAnimator : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         velocity = (transform.position - positionLastFrame) / Time.deltaTime;
 
@@ -93,20 +95,37 @@ public class SpiderAnimator : MonoBehaviour
 
             if (want.HasValue)
             {
-                // smoothly add weight since we have somewhere to put the leg
-                legIkRigs[i].weight = Mathf.Clamp01(legIkRigs[i].weight + Time.deltaTime / stepDuration);
-                
-                if (CanStep(i) && (want.Value - targetWorldPositions[i]).sqrMagnitude > strideDist * strideDist)
+                // the purpose of attached array is that when a leg finds footing after being unable, it will step from the
+                // last place the target was laft (could be anywhere), making a bad looking jump from random place
+
+                // by keeping track of what ones are  attached and not, we check if we found footing whether we hadnt found it
+                // last time, in which case immediately step, otherwise just follow normal step protocol
+                if (!attachedFoot[i])
+                {
+                    targetWorldPositions[i] = want.Value;
+                    attachedFoot[i] = true;
+                }
+                else if (CanStep(i) && (want.Value - targetWorldPositions[i]).sqrMagnitude > strideDist * strideDist)
                 {
                     StartCoroutine(Step(i));
                 }
+
+                // smoothly add weight since we have somewhere to put the leg
+                legIkRigs[i].weight = Mathf.Clamp01(legIkRigs[i].weight + Time.deltaTime / stepDuration);
             }
             else
             {
                 // smoothly remove weight resort to normal animation clip if we have nowhere to put the leg
                 legIkRigs[i].weight = Mathf.Clamp01(legIkRigs[i].weight - Time.deltaTime / stepDuration);
+
+                if (attachedFoot[i])
+                    attachedFoot[i] = false;
+
+                // we wanna assume its grounded when it is in rest pose so other legs arent blocked from stepping
             }
 
+
+            // make targets track their positions appropriately (as they are children so naturally want to follow spider)
             if (groundedFoot[i])
             {
                 targ.position = targetWorldPositions[i];
@@ -151,10 +170,15 @@ public class SpiderAnimator : MonoBehaviour
         Vector3 from = targ.position;
         Vector3? to = FindFooting(leg);
 
+
         while (t < 1)
         {
             to = FindFooting(leg);
-            if (!to.HasValue) yield break;
+            if (!to.HasValue)
+            {
+                groundedFoot[leg] = true;
+                yield break;
+            }
 
             targ.position = Vector3.Lerp(from, to.Value, t);
             targ.Translate(transform.up * stepYCurve.Evaluate(t));
