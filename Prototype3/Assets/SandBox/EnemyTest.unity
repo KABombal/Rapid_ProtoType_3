@@ -488,6 +488,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304962698}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &445279042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7546066007517383028, guid: 4ca7ff339a0e46d41b5a70390925f162,
+    type: 3}
+  m_PrefabInstance: {fileID: 1765341093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &445279043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445279042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13cdae87db4ecfe4eb5446b333234007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 224197853}
+  sprayCanTransform: {fileID: 445279045}
+  optimalHeight: 15
+  maximumHeight: 30
+  maxShadowScale: {x: 5, y: 5, z: 5}
+  minShadowScale: {x: 0.2, y: 0.2, z: 0.2}
+--- !u!4 &445279045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4411036926008756980, guid: 4ca7ff339a0e46d41b5a70390925f162,
+    type: 3}
+  m_PrefabInstance: {fileID: 1765341093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &553573969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1429,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 676619315940613919, guid: 4ca7ff339a0e46d41b5a70390925f162,
         type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 224197853}
+    - target: {fileID: 676619315940613919, guid: 4ca7ff339a0e46d41b5a70390925f162,
+        type: 3}
       propertyPath: sprayEffectPrefab
       value: 
       objectReference: {fileID: 0}
@@ -1471,7 +1506,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 5281635957109556669, guid: 4ca7ff339a0e46d41b5a70390925f162, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7546066007517383028, guid: 4ca7ff339a0e46d41b5a70390925f162,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 445279043}
   m_SourcePrefab: {fileID: 100100000, guid: 4ca7ff339a0e46d41b5a70390925f162, type: 3}
 --- !u!1 &2141502478
 GameObject:
