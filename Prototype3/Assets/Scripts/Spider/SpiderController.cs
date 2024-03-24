@@ -72,6 +72,9 @@ public class SpiderController : MonoBehaviour
 
     public Vector3 MoveInput { get; set; }
 
+    public Transform checkpoint; // Assign the checkpoint transform in the Inspector
+    private int lives = 3;
+
 
     private void OnValidate()
     {
@@ -220,5 +223,26 @@ public class SpiderController : MonoBehaviour
             Gizmos.DrawRay(ray);
 
         }
+    }
+
+    public void HandleParticleCollision()
+    {
+        LoseLife();
+        if (lives > 0)
+        {
+            // Respawn player at the checkpoint
+            transform.position = checkpoint.position;
+        }
+        else
+        {
+            // Handle game over logic
+            Debug.Log("Game Over");
+        }
+    }
+
+    void LoseLife()
+    {
+        lives--;
+        Debug.Log("Life lost. Remaining lives: " + lives);
     }
 }

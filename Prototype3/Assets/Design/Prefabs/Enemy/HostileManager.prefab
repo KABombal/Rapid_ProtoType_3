@@ -52,15 +52,15 @@ MonoBehaviour:
   sprayEffectPrefab: {fileID: 5579181700752408837, guid: 36814b5b4ed497340bd116c6e3eab22f,
     type: 3}
   indicatorControl: {fileID: 946486806616129323}
-  initialMinInterval: 10
-  initialMaxInterval: 15
-  finalMinInterval: 5
-  finalMaxInterval: 7
+  initialMinInterval: 7
+  initialMaxInterval: 12
+  finalMinInterval: 3
+  finalMaxInterval: 6
   timeToDecrease: 300
   movementDuration: 3
   sprayHeight: 15
   startHeight: 30
-  sprayRadius: 3
+  sprayRadius: 0
 --- !u!114 &946486806616129323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +73,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8f6333780670a48bf6f1e2aaf11202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indicatorPrefab: {fileID: 3661806490030935902, guid: 6f88f7ea0b5fa2b4a92cab99c1dd4a9f,
+  indicatorPrefab: {fileID: 2960297611843829237, guid: bf3f407c906421a499d0d146b5ee1954,
     type: 3}
-  indicatorSize: 5

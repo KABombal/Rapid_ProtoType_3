@@ -79,30 +79,34 @@ public class SprayMechanic : MonoBehaviour
             groundPosition.z
         );
 
-        Vector3 sprayPosition = new Vector3(
-            groundPosition.x,
-            groundPosition.y + sprayHeight, // Spray height above the player's current y level
-            groundPosition.z
-        );
+        // Define a layer mask that includes all layers except the Player layer
+        int layerMask = 1 << LayerMask.NameToLayer("Player");
+        layerMask = ~layerMask;
 
         Quaternion rotation = Quaternion.Euler(90f, 0f, 0f);
         GameObject sprayCan = Instantiate(sprayCanPrefab, startPosition, rotation);
-
-        // Show the indicator at the target position with the same radius as the spray
-        indicatorControl.ShowIndicator(groundPosition, sprayRadius);
 
         // Move to sprayHeight
         yield return StartCoroutine(MoveSprayCan(sprayCan, startPosition, sprayHeight + playerTransform.position.y, movementDuration));
 
         // Wait for a second before triggering the spray effect
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         // Spawn the particle system at the spray head location
-        Transform sprayHeadTransform = sprayCan.transform.Find("SprayHead"); // Replace "SprayHead" with the actual name
+        Transform sprayHeadTransform = sprayCan.transform.Find("SprayHead");
         GameObject sprayEffectInstance = null;
         if (sprayHeadTransform != null)
         {
             sprayEffectInstance = Instantiate(sprayEffectPrefab, sprayHeadTransform.position, sprayHeadTransform.rotation, sprayHeadTransform);
+
+            // Cast a ray downward from the spray head to find the ground
+            if (Physics.Raycast(sprayHeadTransform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity, layerMask))
+            {
+                Vector3 indicatorPosition = hit.point; // Position where the ray hit the ground
+
+                // Show the indicator at this position with the same radius as the spray
+                indicatorControl.ShowIndicator(indicatorPosition, sprayRadius);
+            }
         }
 
         // Activate the particle system
@@ -116,11 +120,11 @@ public class SprayMechanic : MonoBehaviour
         }
 
         // Destroy the spray can after a delay to allow the particle effect to complete
-        float particleEffectDuration = 1f; // Adjust this to the duration of your particle effect
+        float particleEffectDuration = 1.5f; // Adjust this to the duration of your particle effect
         Destroy(sprayCan, particleEffectDuration);
 
-        // Hide the indicator
-        indicatorControl.HideIndicator();
+        // Hide the indicator with the same delay
+        indicatorControl.HideIndicator(particleEffectDuration);
     }
 
     IEnumerator MoveSprayCan(GameObject sprayCan, Vector3 start, float targetHeight, float duration)
