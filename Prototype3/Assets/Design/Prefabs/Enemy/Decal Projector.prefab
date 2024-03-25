@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1697640495101643292}
   - component: {fileID: -2849227926600549924}
   - component: {fileID: -3041657777177933452}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Decal Projector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
