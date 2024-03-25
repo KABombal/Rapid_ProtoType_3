@@ -44,7 +44,10 @@ public class SpiderController : MonoBehaviour
     private float surfaceScannerRange = 0.2f;
 
     [SerializeField]
-    private float surfaceScannerAngle = 10f;
+    private float surfaceScannerAngleA = 10f;
+
+    [SerializeField]
+    private float surfaceScannerAngleB = 10f;
 
     [SerializeField]
     private float surfaceScannerOffsetA = 0.2f;
@@ -66,6 +69,8 @@ public class SpiderController : MonoBehaviour
 
     [SerializeField, HideInInspector]
     private Ray[] rayCache;
+    [SerializeField, HideInInspector]
+    private Ray[] rayCacheFallback;
 
     private Vector3 moveWaypoint;
     private float yawInertia;
@@ -78,54 +83,17 @@ public class SpiderController : MonoBehaviour
 
     private void OnValidate()
     {
-        rayCache = new Ray[surfaceScannerRayCount];
-
-        for (int i = 0; i < surfaceScannerRayCount; i++)
-        {
-            float arg = (i * Mathf.PI * 2) / surfaceScannerRayCount;
-
-            float mod = i % 2 == 0 ? surfaceScannerOffsetB : surfaceScannerOffsetA;
-
-            Vector3 offset = new Vector3(
-                Mathf.Cos(arg) * mod,
-                surfaceScannerHeight,
-                Mathf.Sin(arg) * mod
-                );
-
-            Vector3 tangent = new Vector3(offset.z, 0, -offset.x);
-
-            float rayAngle = i % 2 == 0 ? this.surfaceScannerAngle : -this.surfaceScannerAngle;
-
-            Vector3 direction = Quaternion.AngleAxis(rayAngle, tangent) * -transform.up;
-
-            rayCache[i] = new Ray(offset, direction * surfaceScannerRange);
-        }
+        GenRayCaches();
     }
+
     private void Start()
     {
-        rayCache = new Ray[surfaceScannerRayCount];
+        GenRayCaches();
 
-        for (int i = 0; i < surfaceScannerRayCount; i++)
-        {
-            float arg = (i * Mathf.PI * 2) / surfaceScannerRayCount;
-
-            float mod = i % 2 == 0 ? surfaceScannerOffsetB : surfaceScannerOffsetA;
-
-            Vector3 offset = new Vector3(
-                Mathf.Cos(arg) * mod,
-                surfaceScannerHeight,
-                Mathf.Sin(arg) * mod
-                );
-
-            Vector3 tangent = new Vector3(offset.z, 0, -offset.x);
-
-            float rayAngle = i % 2 == 0 ? this.surfaceScannerAngle : -this.surfaceScannerAngle;
-
-            Vector3 direction = Quaternion.AngleAxis(rayAngle, tangent) * -transform.up;
-
-            rayCache[i] = new Ray(offset, direction * surfaceScannerRange);
-        }
+        var scanData = ScanSurroundings();
+        moveWaypoint = scanData.surfaceWaypoint.HasValue ? scanData.surfaceWaypoint.Value : moveWaypoint;
     }
+
     private void Update()
     {
         var scanData = ScanSurroundings();
@@ -151,6 +119,36 @@ public class SpiderController : MonoBehaviour
             moveWaypoint = scanData.surfaceWaypoint.HasValue ? scanData.surfaceWaypoint.Value : moveWaypoint;
 
         transform.position = Vector3.Lerp(transform.position, moveWaypoint, Time.deltaTime * movementSpeed);
+    }
+
+    private void GenRayCaches()
+    {
+        rayCache = new Ray[surfaceScannerRayCount];
+        rayCacheFallback = new Ray[surfaceScannerRayCount];
+
+        for (int i = 0; i < surfaceScannerRayCount; i++)
+        {
+            float arg = (i * Mathf.PI * 2) / surfaceScannerRayCount;
+
+            Vector3 offset = new Vector3(
+                Mathf.Cos(arg) * surfaceScannerOffsetA,
+                surfaceScannerHeight,
+                Mathf.Sin(arg) * surfaceScannerOffsetA
+                );
+            Vector3 offsetF = new Vector3(
+                Mathf.Cos(arg) * surfaceScannerOffsetB,
+                surfaceScannerHeight,
+                Mathf.Sin(arg) * surfaceScannerOffsetB
+                );
+
+            Vector3 tangent = new Vector3(offset.z, 0, -offset.x);
+
+            Vector3 direction = Quaternion.AngleAxis(-surfaceScannerAngleA, tangent) * -transform.up;
+            Vector3 directionF = Quaternion.AngleAxis(surfaceScannerAngleB, tangent) * -transform.up;
+
+            rayCache[i] = new Ray(offset, direction * surfaceScannerRange);
+            rayCacheFallback[i] = new Ray(offsetF, directionF * surfaceScannerRange);
+        }
     }
 
     private (Vector3? averageSurfaceNormal, Vector3? surfaceWaypoint) ScanSurroundings()
@@ -184,12 +182,19 @@ public class SpiderController : MonoBehaviour
             for (int i = 0; i < rayCache.Length; i++)
             {
                 Ray groundScanRay = new Ray(transform.position + transform.rotation * rayCache[i].origin, transform.rotation * rayCache[i].direction);
+                Ray groundScanRayF = new Ray(transform.position + transform.rotation * rayCacheFallback[i].origin, transform.rotation * rayCacheFallback[i].direction);
 
                 if (Physics.Raycast(groundScanRay, out RaycastHit hit, surfaceScannerRange, groundLayer))
                 {
                     if (!averagedNormal.HasValue) averagedNormal = Vector3.zero;
 
-                    averagedNormal += hit.normal * (i % 2 == 0 ? weightA : weightB);
+                    averagedNormal += hit.normal * weightA;
+                }
+                else if(Physics.Raycast(groundScanRayF, out RaycastHit hitF, surfaceScannerRange, groundLayer))
+                {
+                    if (!averagedNormal.HasValue) averagedNormal = Vector3.zero;
+
+                    averagedNormal += hitF.normal * weightB;
                 }
 
             }
@@ -208,20 +213,24 @@ public class SpiderController : MonoBehaviour
 
         direction = Quaternion.AngleAxis(MoveInput.y * movementScannerAngle, transform.right) * direction;
 
-        Ray ray = new Ray(origin, direction);
+        Ray moveRay = new Ray(origin, direction);
 
         Gizmos.color = Color.yellow;
 
-        Gizmos.DrawRay(ray);
+        Gizmos.DrawLine(moveRay.origin, moveRay.origin + moveRay.direction);
 
-        for (int i = 0; i < rayCache.Length; i++)
+        Gizmos.color = Color.blue;
+        foreach (Ray ray in rayCache)
         {
-            ray = new Ray(transform.position + transform.rotation * rayCache[i].origin, transform.rotation * rayCache[i].direction);
+            var worldOrigin = transform.position + transform.rotation * ray.origin;
+            Gizmos.DrawLine(worldOrigin, worldOrigin + transform.rotation * ray.direction * surfaceScannerRange);
+        }
 
-            Gizmos.color = i % 2 == 0 ? Color.magenta : Color.blue;
-
-            Gizmos.DrawRay(ray);
-
+        Gizmos.color = Color.magenta;
+        foreach (Ray ray in rayCacheFallback)
+        {
+            var worldOrigin = transform.position + transform.rotation * ray.origin;
+            Gizmos.DrawLine(worldOrigin, worldOrigin + transform.rotation * ray.direction*surfaceScannerRange);
         }
     }
     public void HandleParticleCollision()
