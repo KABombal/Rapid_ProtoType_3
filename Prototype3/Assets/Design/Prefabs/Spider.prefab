@@ -581,14 +581,15 @@ MonoBehaviour:
   rotateAdaptationSpeed: 10
   inputRotationSpeed: 180
   inputRotationInertia: 10
-  surfaceScannerRayCount: 16
-  surfaceScannerHeight: 0.02
-  surfaceScannerRange: 0.1
-  surfaceScannerAngle: 30
-  surfaceScannerOffsetA: 0.025
-  surfaceScannerOffsetB: 0.02
+  surfaceScannerRayCount: 27
+  surfaceScannerHeight: 0.015
+  surfaceScannerRange: 0.03
+  surfaceScannerAngleA: 50
+  surfaceScannerAngleB: 40
+  surfaceScannerOffsetA: 0.001
+  surfaceScannerOffsetB: 0.026
   weightA: 5
-  weightB: 1
+  weightB: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
