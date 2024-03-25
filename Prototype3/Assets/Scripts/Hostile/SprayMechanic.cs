@@ -28,6 +28,8 @@ public class SprayMechanic : MonoBehaviour
     private float currentMaxInterval;
     private float nextSprayTime;
     private float startTime;
+    private bool isSprayingEnabled = true; // Flag to control the spraying logic
+
     public Vector3 groundPosition;
     public Vector3 startPosition;
     void Start()
@@ -40,6 +42,9 @@ public class SprayMechanic : MonoBehaviour
 
     void Update()
     {
+        if (!isSprayingEnabled) return;
+
+        UpdateSprayCanPosition();
         if (Time.time >= nextSprayTime)
         {
             StartCoroutine(HandleSprayCycle());
@@ -136,5 +141,16 @@ public class SprayMechanic : MonoBehaviour
             yield return null;
         }
         sprayCan.transform.position = new Vector3(start.x, targetHeight, start.z);
+    }
+
+    void UpdateSprayCanPosition()
+    {
+        // Update startPosition to be above the player, considering the player's current orientation
+        startPosition = playerTransform.position + (playerTransform.up * startHeight);
+    }
+
+    public void ToggleSpraying(bool enabled)
+    {
+        isSprayingEnabled = enabled;
     }
 }
