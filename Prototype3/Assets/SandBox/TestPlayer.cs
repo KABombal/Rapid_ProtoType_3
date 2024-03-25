@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TestPlayer : MonoBehaviour
 {
-    public Transform checkpoint; // Assign the checkpoint transform in the Inspector
-    private int lives = 3; // Example lives count
- 
+    public Transform checkpoint;
+    private int lives = 3;
+    private bool canTakeDamage = true;
+    private float damageCooldown = 5.0f; // Cooldown time in seconds
+
     public float speed = 5.0f;
     private Rigidbody rb;
 
@@ -24,22 +26,26 @@ public class TestPlayer : MonoBehaviour
 
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
-
     public void HandleParticleCollision()
     {
-        Debug.Log("Handling particle collision for player.");
-        LoseLife();
-        if (lives > 0)
+        if (canTakeDamage)
         {
+            LoseLife();
+            Debug.Log("Player hit by spray. Lives remaining: " + lives);
+
             // Respawn player at the checkpoint
             transform.position = checkpoint.position;
-            Debug.Log("Player respawned at checkpoint. Lives remaining: " + lives);
+            Debug.Log("Player respawned at checkpoint.");
+
+            canTakeDamage = false;
+            Invoke(nameof(ResetDamageCooldown), damageCooldown);
         }
-        else
-        {
-            // Handle game over logic
-            Debug.Log("Game Over");
-        }
+    }
+
+
+    void ResetDamageCooldown()
+    {
+        canTakeDamage = true;
     }
 
     void LoseLife()
@@ -47,5 +53,4 @@ public class TestPlayer : MonoBehaviour
         lives--;
         Debug.Log("Life lost. Remaining lives: " + lives);
     }
-
 }

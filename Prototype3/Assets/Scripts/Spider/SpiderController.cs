@@ -71,10 +71,10 @@ public class SpiderController : MonoBehaviour
     private float yawInertia;
 
     public Vector3 MoveInput { get; set; }
-
-    public Transform checkpoint; // Assign the checkpoint transform in the Inspector
+     
+    public Transform checkpoint;
     private int lives = 3;
-
+    private bool canTakeDamage = true;
 
     private void OnValidate()
     {
@@ -224,25 +224,52 @@ public class SpiderController : MonoBehaviour
 
         }
     }
-
     public void HandleParticleCollision()
     {
-        LoseLife();
-        if (lives > 0)
+        Debug.Log("HandleParticleCollision called. Can take damage: " + canTakeDamage);
+        if (canTakeDamage)
         {
-            // Respawn player at the checkpoint
-            transform.position = checkpoint.position;
+            LoseLife();
+            if (lives > 0)
+            {
+                // Respawn player at the checkpoint
+                if (checkpoint != null)
+                {
+                    transform.position = checkpoint.position;
+                    Debug.Log("Player respawned at checkpoint.");
+                }
+                else
+                {
+                    Debug.LogError("Checkpoint not assigned.");
+                }
+            }
+            else
+            {
+                Debug.Log("Game Over");
+            }
+
+            canTakeDamage = false;
+            Invoke(nameof(ResetDamageCooldown), 5f); // Cooldown for 5 seconds
         }
-        else
-        {
-            // Handle game over logic
-            Debug.Log("Game Over");
-        }
+    }
+
+    void ResetDamageCooldown()
+    {
+        Debug.Log("Can take damage reset.");
+        canTakeDamage = true;
     }
 
     void LoseLife()
     {
-        lives--;
-        Debug.Log("Life lost. Remaining lives: " + lives);
+        if (lives > 0)
+        {
+            lives--;
+            Debug.Log("Life lost. Remaining lives: " + lives);
+        }
+        else
+        {
+            Debug.Log("No more lives.");
+            // Add game over logic here if necessary
+        }
     }
 }

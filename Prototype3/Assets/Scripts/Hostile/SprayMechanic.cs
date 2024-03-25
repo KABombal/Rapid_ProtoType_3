@@ -28,7 +28,8 @@ public class SprayMechanic : MonoBehaviour
     private float currentMaxInterval;
     private float nextSprayTime;
     private float startTime;
-
+    public Vector3 groundPosition;
+    public Vector3 startPosition;
     void Start()
     {
         startTime = Time.time;
@@ -46,6 +47,19 @@ public class SprayMechanic : MonoBehaviour
         }
 
         AdjustIntervalOverTime();
+
+        groundPosition = new Vector3(
+            playerTransform.position.x,
+            playerTransform.position.y, // Player's ground level
+            playerTransform.position.z
+        );
+
+        // Spray Can spawns directly above the player
+        startPosition = new Vector3(
+            playerTransform.position.x,
+            playerTransform.position.y + startHeight,
+            playerTransform.position.z
+        );
     }
 
     void ScheduleNextSpray()
@@ -63,22 +77,6 @@ public class SprayMechanic : MonoBehaviour
     }
     IEnumerator HandleSprayCycle()
     {
-        // Calculate a random position within a radius around the player, at startHeight
-        Vector3 randomOffset = Random.insideUnitSphere * sprayRadius;
-        randomOffset.y = 0; // Only randomize x and z
-
-        Vector3 groundPosition = new Vector3(
-            playerTransform.position.x + randomOffset.x,
-            playerTransform.position.y, // Player's ground level
-            playerTransform.position.z + randomOffset.z
-        );
-
-        Vector3 startPosition = new Vector3(
-            groundPosition.x,
-            groundPosition.y + startHeight, // Start above the player's current y level
-            groundPosition.z
-        );
-
         // Define a layer mask that includes all layers except the Player layer
         int layerMask = 1 << LayerMask.NameToLayer("Player");
         layerMask = ~layerMask;

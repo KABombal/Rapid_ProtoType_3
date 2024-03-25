@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4765339392066168338}
   - component: {fileID: 9103884994177012051}
   - component: {fileID: 4329563471843554735}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SprayHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 5502432544608888713}
   - component: {fileID: 1218799873722519639}
   - component: {fileID: 4429341573561879800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BugSpray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13cdae87db4ecfe4eb5446b333234007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 7913163690318173015, guid: 899832133d1f57f41a07cd72fa9022a0,
+  playerTransform: {fileID: 8657146546482067205, guid: 4189a78a5456f8c4cbb79e859d87e573,
     type: 3}
   sprayCanTransform: {fileID: 4411036926008756980}
   optimalHeight: 15

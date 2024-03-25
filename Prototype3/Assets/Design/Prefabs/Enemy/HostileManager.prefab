@@ -57,10 +57,12 @@ MonoBehaviour:
   finalMinInterval: 3
   finalMaxInterval: 6
   timeToDecrease: 300
-  movementDuration: 3
+  movementDuration: 1.5
   sprayHeight: 15
   startHeight: 30
   sprayRadius: 0
+  groundPosition: {x: 0, y: 0, z: 0}
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &946486806616129323
 MonoBehaviour:
   m_ObjectHideFlags: 0
