@@ -879,6 +879,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider
       objectReference: {fileID: 0}
+    - target: {fileID: 2974298137241324514, guid: 899832133d1f57f41a07cd72fa9022a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3803c3d03a158bb458750747ab472492, type: 2}
     - target: {fileID: 3277311069739430811, guid: 899832133d1f57f41a07cd72fa9022a0,
         type: 3}
       propertyPath: m_Weight
