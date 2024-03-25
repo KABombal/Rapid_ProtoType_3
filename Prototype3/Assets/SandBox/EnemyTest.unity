@@ -123,39 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &400611931 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7280444955633424969, guid: baed33071230dfa44a4572d5e3e232b2,
-    type: 3}
-  m_PrefabInstance: {fileID: 750012773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &400611935 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3226064425097902168, guid: baed33071230dfa44a4572d5e3e232b2,
     type: 3}
   m_PrefabInstance: {fileID: 750012773}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &400611936
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400611931}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.10908985, y: 0.03954117, z: 0.119783886}
-  m_Center: {x: 0.00672492, y: 0.0038398325, z: -0.0020023393}
 --- !u!1 &696187389
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,21 +250,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3226064425097902168, guid: baed33071230dfa44a4572d5e3e232b2,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3226064425097902168, guid: baed33071230dfa44a4572d5e3e232b2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3226064425097902168, guid: baed33071230dfa44a4572d5e3e232b2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3226064425097902168, guid: baed33071230dfa44a4572d5e3e232b2,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5559826
       objectReference: {fileID: 0}
@@ -350,25 +308,10 @@ PrefabInstance:
       propertyPath: checkpoint
       value: 
       objectReference: {fileID: 2042906350}
-    - target: {fileID: 7117415593210040550, guid: baed33071230dfa44a4572d5e3e232b2,
-        type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 7280444955633424969, guid: baed33071230dfa44a4572d5e3e232b2,
         type: 3}
       propertyPath: m_Name
       value: Spider Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 7280444955633424969, guid: baed33071230dfa44a4572d5e3e232b2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356877707686167441, guid: baed33071230dfa44a4572d5e3e232b2,
-        type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8356877707686167441, guid: baed33071230dfa44a4572d5e3e232b2,
         type: 3}
@@ -617,11 +560,7 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1933477559}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7280444955633424969, guid: baed33071230dfa44a4572d5e3e232b2,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 400611936}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baed33071230dfa44a4572d5e3e232b2, type: 3}
 --- !u!1001 &1480297301
 PrefabInstance:

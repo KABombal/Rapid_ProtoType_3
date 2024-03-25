@@ -8,6 +8,7 @@ public class SprayMechanic : MonoBehaviour
     public GameObject sprayCanPrefab; // Prefab for the spray can
     public GameObject sprayEffectPrefab;
     public IndicatorControl indicatorControl;
+    public DecalManager decalManager;
 
     // Initial interval timing
     public float initialMinInterval = 10f;
@@ -28,6 +29,8 @@ public class SprayMechanic : MonoBehaviour
     private float currentMaxInterval;
     private float nextSprayTime;
     private float startTime;
+    private bool isSprayingEnabled = true; // Flag to control the spraying logic
+
     public Vector3 groundPosition;
     public Vector3 startPosition;
     void Start()
@@ -36,10 +39,19 @@ public class SprayMechanic : MonoBehaviour
         currentMinInterval = initialMinInterval;
         currentMaxInterval = initialMaxInterval;
         ScheduleNextSpray();
+
+        if (!decalManager)
+        {
+            Debug.LogError("DecalManager not assigned in SprayMechanic.");
+        }
     }
 
     void Update()
     {
+        if (!isSprayingEnabled) return;
+
+        UpdateSprayCanPosition();
+
         if (Time.time >= nextSprayTime)
         {
             StartCoroutine(HandleSprayCycle());
@@ -107,6 +119,9 @@ public class SprayMechanic : MonoBehaviour
             }
         }
 
+        // Destroy the spray can after a delay to allow the particle effect to complete
+        float particleEffectDuration = 1.5f; // Adjust this to the duration of your particle effect
+
         // Activate the particle system
         if (sprayEffectInstance != null)
         {
@@ -115,13 +130,20 @@ public class SprayMechanic : MonoBehaviour
             {
                 sprayScript.ActivateSpray();
             }
+
+            // Wait for the particle effect to complete before creating a decal
+            yield return new WaitForSeconds(particleEffectDuration);
+
+            // Raycast down from the spray head to place the decal
+            if (Physics.Raycast(sprayHeadTransform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity))
+            {
+                decalManager.CreateDecal(hit.point); // Create the decal at the raycast hit point
+            }
         }
 
-        // Destroy the spray can after a delay to allow the particle effect to complete
-        float particleEffectDuration = 1.5f; // Adjust this to the duration of your particle effect
         Destroy(sprayCan, particleEffectDuration);
 
-        // Hide the indicator with the same delay
+        // Hide the indicator
         indicatorControl.HideIndicator(particleEffectDuration);
     }
 
@@ -136,5 +158,16 @@ public class SprayMechanic : MonoBehaviour
             yield return null;
         }
         sprayCan.transform.position = new Vector3(start.x, targetHeight, start.z);
+    }
+
+    void UpdateSprayCanPosition()
+    {
+        // Update startPosition to be above the player, considering the player's current orientation
+        startPosition = playerTransform.position + (playerTransform.up * startHeight);
+    }
+
+    public void ToggleSpraying(bool enabled)
+    {
+        isSprayingEnabled = enabled;
     }
 }

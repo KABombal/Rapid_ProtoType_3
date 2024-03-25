@@ -259,7 +259,7 @@ public class SpiderController : MonoBehaviour
         canTakeDamage = true;
     }
 
-    void LoseLife()
+    public void LoseLife()
     {
         if (lives > 0)
         {
