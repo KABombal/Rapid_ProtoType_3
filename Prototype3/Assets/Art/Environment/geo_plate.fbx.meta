@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: dd578c460eb3f90498ad5ab3775b750c
-=======
-guid: c6fbf067a5884594abcaafa88b9ce441
->>>>>>> Stashed changes
+guid: 7e8dc1dca60b69a44abc6aee1be50637
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -39,7 +35,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

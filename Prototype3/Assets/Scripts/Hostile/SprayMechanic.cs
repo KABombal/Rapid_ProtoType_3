@@ -45,6 +45,7 @@ public class SprayMechanic : MonoBehaviour
         if (!isSprayingEnabled) return;
 
         UpdateSprayCanPosition();
+
         if (Time.time >= nextSprayTime)
         {
             StartCoroutine(HandleSprayCycle());
