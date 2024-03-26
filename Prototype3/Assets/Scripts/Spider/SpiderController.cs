@@ -67,6 +67,8 @@ public class SpiderController : MonoBehaviour
     private LayerMask groundLayer = new LayerMask();
 
 
+    public int CurrentGroundLayer { get; private set; }
+
     [SerializeField, HideInInspector]
     private Ray[] rayCache;
     [SerializeField, HideInInspector]
@@ -170,6 +172,7 @@ public class SpiderController : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, movementScannerRange, groundLayer))
             {
                 waypoint = hit.point;
+                CurrentGroundLayer = hit.collider.gameObject.layer;
             }
         }
 

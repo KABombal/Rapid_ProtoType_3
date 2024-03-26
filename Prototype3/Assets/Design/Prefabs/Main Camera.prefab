@@ -154,8 +154,12 @@ MonoBehaviour:
   followDistance: 0.5
   followSpeed: 5
   followLagClamp: 0.7
-  angleStandard: 70
+  angleStandard: 75
+  angleStandardWall: 60
   angleWall: 10
   floorAngleThreshold: 50
   useRaycast: 1
   rayCastStart: 0.05
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0

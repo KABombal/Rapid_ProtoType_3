@@ -539,13 +539,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   legLength: 0.05
-  stepDuration: 0.1
-  strideDist: 0.01
+  stepDuration: 0.05
+  strideDist: 0.02
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   velocityForwardFactor: 0.1
-  velocityForwardCap: 0.005
+  velocityForwardCap: 0.01
   targetRestPositions:
   - {x: 0.0236, y: -0.00039999932, z: -0.0319}
   - {x: -0.0319, y: -0.00039999932, z: -0.0253}
@@ -576,25 +576,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c0c03dec3b9c046b8d20e21720325e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 20
+  movementSpeed: 80
   movementScannerHeight: 0.02
   movementScannerAngle: 10
   movementScannerRange: 0.1
   rotateAdaptationSpeed: 10
   inputRotationSpeed: 180
   inputRotationInertia: 10
-  surfaceScannerRayCount: 27
-  surfaceScannerHeight: 0.015
-  surfaceScannerRange: 0.03
-  surfaceScannerAngleA: 50
-  surfaceScannerAngleB: 40
+  surfaceScannerRayCount: 36
+  surfaceScannerHeight: 0.03
+  surfaceScannerRange: 0.07
+  surfaceScannerAngleA: 43.6
+  surfaceScannerAngleB: 33.8
   surfaceScannerOffsetA: 0.001
   surfaceScannerOffsetB: 0.026
   weightA: 5
   weightB: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   checkpoint: {fileID: 0}
   uiManager: {fileID: 0}
 --- !u!114 &5196903295295233163

@@ -28,6 +28,9 @@ public class CameraController : MonoBehaviour
     private float angleStandard = 60f;
 
     [SerializeField]
+    private float angleStandardWall = 40f;
+
+    [SerializeField]
     private float angleWall = 10f;
 
     [SerializeField]
@@ -39,12 +42,20 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float rayCastStart = 0.05f;
 
+    [SerializeField]
+    private LayerMask wallLayer = new LayerMask();
+
 
     private Mode mode;
     private Vector3 followDelta;
     private Vector3 desiredPosition;
 
     private Vector3 targetLastPosition;
+
+    private void Start()
+    {
+        targetLastPosition = target.position;
+    }
 
     private void Update()
     {
@@ -59,8 +70,6 @@ public class CameraController : MonoBehaviour
                 CalcFollowDeltaWall();
                 break;
         }
-
-
 
         Vector3 newDesiredPos = target.position + followDelta;
 
@@ -90,17 +99,22 @@ public class CameraController : MonoBehaviour
 
         Vector3 desiredDelta = Vector3.forward * followDistance;
         Quaternion look = Quaternion.LookRotation(Vector3.ProjectOnPlane(-vel, Vector3.up), Vector3.up);
-        Quaternion angle = Quaternion.Euler(-angleStandard, 0, 0);
+        Quaternion elevation = Quaternion.Euler(-angleStandard, 0, 0);
 
-        followDelta = look * angle * desiredDelta;
+        followDelta = look * elevation * desiredDelta;
     }
 
     private void CalcFollowDeltaWall()
     {
+        int wallLayer = target.GetComponent<SpiderController>().CurrentGroundLayer;
+        bool isOnActualWall = ((1 << wallLayer) & this.wallLayer.value) != 0;
+        Debug.Log(isOnActualWall);
+        float angle = isOnActualWall ? angleWall : angleStandardWall;
+
         Vector3 desiredDelta = Vector3.forward * followDistance;
 
         Quaternion look = Quaternion.LookRotation(Vector3.ProjectOnPlane(target.up, Vector3.up), Vector3.up);
-        Quaternion elevation = Quaternion.Euler(-angleWall, 0, 0);
+        Quaternion elevation = Quaternion.Euler(-angle, 0, 0);
 
         followDelta = look * elevation * desiredDelta;
     }
