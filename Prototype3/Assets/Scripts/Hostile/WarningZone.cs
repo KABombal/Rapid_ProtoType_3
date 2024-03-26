@@ -1,10 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WarningZone : MonoBehaviour
 {
     private UIManager uiManager;
+    private bool warningShown = false;
+
+    public float warningHeightUpper = 1.3f;
+    public float warningHeightLower = 0.7f;
+    public float killHeightUpper = 1.6f;
+    public float killHeightLower = 0.45f;
 
     private void Start()
     {
@@ -13,20 +17,29 @@ public class WarningZone : MonoBehaviour
             Debug.LogError("UIManager not found in the scene!");
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.CompareTag("Player"))
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            uiManager.ShowWarningMessage(); // Show warning message
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            uiManager.HideWarningMessage(); // Hide warning message
+            float playerHeight = player.transform.position.y;
+            if ((playerHeight > warningHeightUpper && playerHeight < killHeightUpper) ||
+                (playerHeight < warningHeightLower && playerHeight > killHeightLower))
+            {
+                if (!warningShown)
+                {
+                    uiManager.ShowWarningMessage(); // Show warning message
+                    warningShown = true;
+                }
+            }
+            else
+            {
+                if (warningShown)
+                {
+                    uiManager.HideWarningMessage(); // Hide warning message
+                    warningShown = false;
+                }
+            }
         }
     }
 }
-

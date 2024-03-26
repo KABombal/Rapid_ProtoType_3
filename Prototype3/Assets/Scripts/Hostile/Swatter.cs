@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Swatter : MonoBehaviour
 {
-    public float speed = 8f;         // Speed of swatter's descent
+    public float speed = 1f;         // Speed of swatter's descent
     public AudioClip squashSound;    // Squash sound clip
-    private bool isDescending = false;   // Flag to control swatter's movement
-    private Transform target;            // Player's transform
-    private AudioSource audioSource;     // Audio source for squash sound
+    public Transform swatterTop;     // Transform of the top part of the swatter
+
+    private bool isDescending = false;  // Flag to control swatter's movement
+    private Transform target;           // Player's transform
+    private AudioSource audioSource;    // Audio source for squash sound
+    private float killDistance = 0.5f;  // Distance at which the swatter will kill the player
+    public SpiderController spiderController; // Direct reference to the player controller script
 
     void Start()
     {
@@ -19,8 +21,16 @@ public class Swatter : MonoBehaviour
     {
         if (isDescending && target != null)
         {
-            // Move the swatter towards the player
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, target.position.z), speed * Time.deltaTime);
+            // Move only the top of the swatter towards the player's position on the same height
+            Vector3 targetPosition = new Vector3(target.position.x, swatterTop.position.y, target.position.z);
+            swatterTop.position = Vector3.MoveTowards(swatterTop.position, targetPosition, speed * Time.deltaTime);
+
+            // Check the distance to the player
+            if (Vector3.Distance(swatterTop.position, targetPosition) < killDistance)
+            {
+                Debug.Log("Swatter Activated");
+                KillPlayer();
+            }
         }
     }
 
@@ -30,15 +40,18 @@ public class Swatter : MonoBehaviour
         isDescending = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void KillPlayer()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (audioSource != null && squashSound != null)
         {
             audioSource.PlayOneShot(squashSound);
-            // Kill the player or trigger player's death logic
-            collision.gameObject.GetComponent<SpiderController>().HandleParticleCollision();
-            // Disable or destroy the swatter
-            Destroy(gameObject);
         }
+
+        // Call the player's death handling method
+        spiderController.LoseLife();
+
+        // Stop descending and disable or destroy the swatter
+        isDescending = false;
+        gameObject.SetActive(false); // or Destroy(gameObject);
     }
 }
