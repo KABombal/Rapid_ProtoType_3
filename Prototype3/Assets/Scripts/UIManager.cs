@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject deathScreen;
     public GameObject victoryScreen;
-
+    public GameObject warningMessage;  // Reference to warning text element
     public void ShowDeathScreen()
     {
         deathScreen.SetActive(true);
@@ -49,6 +50,16 @@ public class UIManager : MonoBehaviour
     {
         UnpauseGame();
         Application.Quit();
+    }
+
+    public void ShowWarningMessage()
+    {
+        warningMessage.SetActive(true);
+    }
+
+    public void HideWarningMessage()
+    {
+        warningMessage.SetActive(false);
     }
 
     private void PauseGame()
