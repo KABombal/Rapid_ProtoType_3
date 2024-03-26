@@ -810,7 +810,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 808529375852695136}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ReturnToMenu
         m_Mode: 1
@@ -834,7 +834,6 @@ GameObject:
   - component: {fileID: 484027685341506338}
   - component: {fileID: 5552543495331469497}
   - component: {fileID: 6181861964605044244}
-  - component: {fileID: 808529375852695136}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -927,21 +926,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &808529375852695136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2808830958183978197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6fb317315665e5428f4e702f2bcca91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathScreen: {fileID: 8715042331641380175}
-  victoryScreen: {fileID: 1298822895845409633}
-  warningMessage: {fileID: 3338026861510440971}
 --- !u!1 &3119594413477781419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1181,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 808529375852695136}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
@@ -1749,7 +1733,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 808529375852695136}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1

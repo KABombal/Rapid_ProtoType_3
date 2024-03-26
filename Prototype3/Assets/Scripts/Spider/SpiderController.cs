@@ -76,10 +76,11 @@ public class SpiderController : MonoBehaviour
     private float yawInertia;
 
     public Vector3 MoveInput { get; set; }
-     
+
     public Transform checkpoint;
     private int lives = 3;
     private bool canTakeDamage = true;
+    public UIManager uiManager;
 
     private void OnValidate()
     {
@@ -104,7 +105,7 @@ public class SpiderController : MonoBehaviour
         Vector3 up = scanData.averageSurfaceNormal.HasValue ? scanData.averageSurfaceNormal.Value : transform.up;
 
         Vector3 forward = Vector3.Cross(up, -transform.right);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(forward, up), Time.deltaTime * rotateAdaptationSpeed );
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(forward, up), Time.deltaTime * rotateAdaptationSpeed);
 
         if (Mathf.Abs(MoveInput.x) > 0.01f)
             yawInertia = Mathf.Clamp(yawInertia + MoveInput.x * Time.deltaTime * inputRotationInertia, -1f, 1f);
@@ -190,7 +191,7 @@ public class SpiderController : MonoBehaviour
 
                     averagedNormal += hit.normal * weightA;
                 }
-                else if(Physics.Raycast(groundScanRayF, out RaycastHit hitF, surfaceScannerRange, groundLayer))
+                else if (Physics.Raycast(groundScanRayF, out RaycastHit hitF, surfaceScannerRange, groundLayer))
                 {
                     if (!averagedNormal.HasValue) averagedNormal = Vector3.zero;
 
@@ -230,11 +231,12 @@ public class SpiderController : MonoBehaviour
         foreach (Ray ray in rayCacheFallback)
         {
             var worldOrigin = transform.position + transform.rotation * ray.origin;
-            Gizmos.DrawLine(worldOrigin, worldOrigin + transform.rotation * ray.direction*surfaceScannerRange);
+            Gizmos.DrawLine(worldOrigin, worldOrigin + transform.rotation * ray.direction * surfaceScannerRange);
         }
     }
     public void HandleParticleCollision()
     {
+        canTakeDamage = true;
         Debug.Log("HandleParticleCollision called. Can take damage: " + canTakeDamage);
         if (canTakeDamage)
         {
@@ -267,18 +269,22 @@ public class SpiderController : MonoBehaviour
         Debug.Log("Can take damage reset.");
         canTakeDamage = true;
     }
-
     public void LoseLife()
     {
+        uiManager = FindObjectOfType<UIManager>();
+        Debug.Log("LoseLife called.");
+        Debug.Log("UIManager reference: " + (uiManager == null ? "null" : "not null"));
+
         if (lives > 0)
         {
             lives--;
             Debug.Log("Life lost. Remaining lives: " + lives);
         }
         else
+        if (lives <= 0)
         {
-            Debug.Log("No more lives.");
-            // Add game over logic here if necessary
+            uiManager.ShowDeathScreen();
         }
     }
+
 }

@@ -8,8 +8,7 @@ public class DecalCollision : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Assuming the player script has a method called 'LoseLife'
-            other.GetComponent<SpiderController>().LoseLife();
+            other.GetComponent<SpiderController>().HandleParticleCollision();
         }
     }
 }

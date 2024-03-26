@@ -36,9 +36,9 @@ public class Swatter : MonoBehaviour
         {
             audioSource.PlayOneShot(squashSound);
             // Kill the player or trigger player's death logic
-            collision.gameObject.GetComponent<SpiderController>().LoseLife();
+            collision.gameObject.GetComponent<SpiderController>().HandleParticleCollision();
             // Disable or destroy the swatter
-            Destroy(gameObject); // Or deactivate it for reuse
+            Destroy(gameObject);
         }
     }
 }

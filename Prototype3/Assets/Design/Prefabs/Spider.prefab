@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 5196903295295233163}
   m_Layer: 0
   m_Name: Spider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -593,6 +593,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+  checkpoint: {fileID: 0}
 --- !u!114 &5196903295295233163
 MonoBehaviour:
   m_ObjectHideFlags: 0

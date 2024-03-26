@@ -4,25 +4,7 @@ using UnityEngine;
 
 public class ParticleCollisionHandler : MonoBehaviour
 {
-    private SpiderController spiderController; // Reference to the player controller script
-
-    void Start()
-    {
-        // Find the player with the "Player" tag and get the SpiderController component
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        if (playerObject != null)
-        {
-            spiderController = playerObject.GetComponent<SpiderController>();
-            if (spiderController == null)
-            {
-                Debug.LogError("SpiderController script not found on Player object.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Player object not found.");
-        }
-    }
+    public SpiderController spiderController; // Direct reference to the player controller script
 
     void OnParticleCollision(GameObject other)
     {
@@ -30,7 +12,14 @@ public class ParticleCollisionHandler : MonoBehaviour
         {
             Debug.Log("Particle collided with player.");
             // Call the function to handle player's collision with particles
-            spiderController.HandleParticleCollision();
+            if (spiderController != null)
+            {
+                spiderController.HandleParticleCollision();
+            }
+            else
+            {
+                Debug.LogError("SpiderController reference not set on ParticleCollisionHandler.");
+            }
         }
     }
 }
