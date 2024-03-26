@@ -236,23 +236,24 @@ public class SpiderController : MonoBehaviour
     }
     public void HandleParticleCollision()
     {
-        canTakeDamage = true;
+       
         Debug.Log("HandleParticleCollision called. Can take damage: " + canTakeDamage);
         if (canTakeDamage)
         {
             LoseLife();
             if (lives > 0)
             {
-                // Respawn player at the checkpoint
-                if (checkpoint != null)
-                {
-                    transform.position = checkpoint.position;
-                    Debug.Log("Player respawned at checkpoint.");
-                }
-                else
-                {
-                    Debug.LogError("Checkpoint not assigned.");
-                }
+                //// Respawn player at the checkpoint
+                //if (checkpoint != null)
+                //{
+                //    transform.position = checkpoint.position;
+                //    Debug.Log("Player respawned at checkpoint.");
+                //}
+                //else
+                //{
+                //    Debug.LogError("Checkpoint not assigned.");
+                //}
+                GameManager_Scr.Instance.OnPlayerDeath();
             }
             else
             {
