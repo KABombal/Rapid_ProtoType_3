@@ -6,6 +6,7 @@ public class GameManager_Scr : MonoBehaviour
 {
 
     public static GameManager_Scr Instance { get; private set; }
+    public GameObject UI_Manager;
 
     private void Awake()
     {
@@ -47,9 +48,10 @@ public class GameManager_Scr : MonoBehaviour
     {
         if (Player != null)
         {
-            Player.SetActive(false);
+            
             Player.transform.position = RespawnPoint.transform.position;
-            Player.SetActive(true);
+           
+            Debug.Log("Player respawned");
         }
         else
         {

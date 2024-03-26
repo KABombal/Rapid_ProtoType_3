@@ -115,7 +115,7 @@ public class SprayMechanic : MonoBehaviour
                 Vector3 indicatorPosition = hit.point; // Position where the ray hit the ground
 
                 // Show the indicator at this position with the same radius as the spray
-                indicatorControl.ShowIndicator(indicatorPosition, sprayRadius);
+                //indicatorControl.ShowIndicator(indicatorPosition, sprayRadius);
             }
         }
 
