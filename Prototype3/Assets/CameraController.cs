@@ -33,10 +33,18 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float floorAngleThreshold = 50f;
 
+    [SerializeField]
+    private bool useRaycast = true;
+
+    [SerializeField]
+    private float rayCastStart = 0.05f;
+
+
     private Mode mode;
     private Vector3 followDelta;
     private Vector3 desiredPosition;
 
+    private Vector3 targetLastPosition;
 
     private void Update()
     {
@@ -63,6 +71,9 @@ public class CameraController : MonoBehaviour
         GotoDesiredPos();
 
         transform.LookAt(target.position);
+
+        if ((target.position - targetLastPosition).sqrMagnitude > 0.0001f)
+            targetLastPosition = target.position;
     }
 
     private void CalcMode()
@@ -75,27 +86,35 @@ public class CameraController : MonoBehaviour
 
     private void CalcFollowDeltaFree()
     {
-        Vector3 desiredDelta = Vector3.forward * followDistance;
-        Quaternion angle = Quaternion.Euler(-angleStandard, target.rotation.eulerAngles.y, 0);
+        Vector3 vel = target.position - targetLastPosition;
 
-        followDelta = angle * desiredDelta;
+        Vector3 desiredDelta = Vector3.forward * followDistance;
+        Quaternion look = Quaternion.LookRotation(Vector3.ProjectOnPlane(-vel, Vector3.up), Vector3.up);
+        Quaternion angle = Quaternion.Euler(-angleStandard, 0, 0);
+
+        followDelta = look * angle * desiredDelta;
     }
 
     private void CalcFollowDeltaWall()
     {
         Vector3 desiredDelta = Vector3.forward * followDistance;
-        float angleYaw = Vector3.Angle(Vector3.forward, Vector3.ProjectOnPlane(target.up, Vector3.up));
 
-        Quaternion elevation = Quaternion.Euler(-angleWall, angleYaw, 0);
+        Quaternion look = Quaternion.LookRotation(Vector3.ProjectOnPlane(target.up, Vector3.up), Vector3.up);
+        Quaternion elevation = Quaternion.Euler(-angleWall, 0, 0);
 
-        followDelta = elevation * desiredDelta;
+        followDelta = look * elevation * desiredDelta;
     }
 
     private void GotoDesiredPos()
     {
-        Ray ray = new Ray(target.position, desiredPosition - target.position);
+        Vector3 start = target.position;
+        Vector3 dir = desiredPosition - target.position;
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        start += dir.normalized * rayCastStart; // to ensure no weird stuff since it originates from floor
+
+        float dist = Vector3.Distance(start, desiredPosition);
+
+        if (useRaycast && Physics.Raycast(start, dir, out RaycastHit hit, dist))
         {
             transform.position = hit.point;
         }
