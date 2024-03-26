@@ -6,6 +6,7 @@ public class GameManager_Scr : MonoBehaviour
 {
 
     public static GameManager_Scr Instance { get; private set; }
+    public GameObject UI_Manager;
 
     private void Awake()
     {
