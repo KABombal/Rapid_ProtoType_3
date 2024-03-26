@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class WarningZone : MonoBehaviour
 {
-    private bool playerEntered = false; // Flag to track if the player has entered
+    private UIManager uiManager;
+
+    private void Start()
+    {
+        uiManager = FindObjectOfType<UIManager>(); // Find the UIManager in the scene
+        if (uiManager == null)
+            Debug.LogError("UIManager not found in the scene!");
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !playerEntered) // Check for first interaction
+        if (other.CompareTag("Player"))
         {
-            playerEntered = true;
-            // Display a warning message to the player
-            Debug.Log("Warning: Approaching the boundary of the playable area!");
-            // Trigger any visual/audio warning effects here
+            uiManager.ShowWarningMessage(); // Show warning message
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            uiManager.HideWarningMessage(); // Hide warning message
         }
     }
 }
+

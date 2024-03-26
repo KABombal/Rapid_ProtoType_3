@@ -55,8 +55,8 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 0.22182766}
-  m_Size: {x: 10, y: 10, z: 10}
+  m_Offset: {x: 0, y: 0, z: 0.00665483}
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
   m_FadeFactor: 1
 --- !u!114 &-2849227926600549924
 MonoBehaviour:

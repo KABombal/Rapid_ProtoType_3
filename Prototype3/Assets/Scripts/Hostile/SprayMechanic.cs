@@ -120,7 +120,7 @@ public class SprayMechanic : MonoBehaviour
         }
 
         // Destroy the spray can after a delay to allow the particle effect to complete
-        float particleEffectDuration = 1.5f; // Adjust this to the duration of your particle effect
+        float particleEffectDuration = 1.0f; // Adjust this to the duration of your particle effect
 
         // Activate the particle system
         if (sprayEffectInstance != null)
@@ -132,7 +132,7 @@ public class SprayMechanic : MonoBehaviour
             }
 
             // Wait for the particle effect to complete before creating a decal
-            yield return new WaitForSeconds(particleEffectDuration);
+            yield return new WaitForSeconds(1.5f);
 
             // Raycast down from the spray head to place the decal
             if (Physics.Raycast(sprayHeadTransform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity))

@@ -449,9 +449,10 @@ GameObject:
   - component: {fileID: 3669847709567740062}
   - component: {fileID: 2581230223891594217}
   - component: {fileID: 5196903295295233163}
+  - component: {fileID: 8526028733127997437}
   m_Layer: 0
   m_Name: Spider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,23 +546,23 @@ MonoBehaviour:
   velocityForwardFactor: 0.1
   velocityForwardCap: 0.005
   targetRestPositions:
-  - {x: 0.023599999, y: -0.00039999932, z: -0.031900004}
-  - {x: -0.0319, y: -0.00039999932, z: -0.025299998}
-  - {x: 0.0373, y: -0.00039999932, z: -0.011399998}
-  - {x: -0.037000004, y: -0.00039999932, z: -0.011200002}
+  - {x: 0.0236, y: -0.00039999932, z: -0.0319}
+  - {x: -0.0319, y: -0.00039999932, z: -0.0253}
+  - {x: 0.0373, y: -0.00039999932, z: -0.0114}
+  - {x: -0.037, y: -0.00039999932, z: -0.0112}
   - {x: 0.0339, y: -0.00039999932, z: 0.0084}
-  - {x: -0.034000006, y: -0.00039999932, z: 0.0087}
-  - {x: 0.027500002, y: -0.00039999932, z: 0.030800002}
-  - {x: -0.026600003, y: -0.0004, z: 0.032}
+  - {x: -0.034, y: -0.00039999932, z: 0.0087}
+  - {x: 0.0275, y: -0.00039999932, z: 0.0308}
+  - {x: -0.0266, y: -0.0004, z: 0.032}
   targetWorldPositions:
-  - {x: -0.148563, y: -0.00039999932, z: -0.04128052}
-  - {x: -0.18909718, y: -0.00039999932, z: -0.0027994877}
-  - {x: -0.12532306, y: -0.00039999932, z: -0.033043683}
-  - {x: -0.18475226, y: -0.00039999932, z: 0.011551176}
-  - {x: -0.116206795, y: -0.00039999932, z: -0.015141345}
-  - {x: -0.17044681, y: -0.00039999932, z: 0.02570619}
-  - {x: -0.10794001, y: -0.00039999932, z: 0.00663893}
-  - {x: -0.15058158, y: -0.0004, z: 0.039954793}
+  - {x: 0.0236, y: -0.00039999932, z: -0.0319}
+  - {x: -0.0319, y: -0.00039999932, z: -0.0253}
+  - {x: 0.0373, y: -0.00039999932, z: -0.0114}
+  - {x: -0.037, y: -0.00039999932, z: -0.0112}
+  - {x: 0.0339, y: -0.00039999932, z: 0.0084}
+  - {x: -0.034, y: -0.00039999932, z: 0.0087}
+  - {x: 0.0275, y: -0.00039999932, z: 0.0308}
+  - {x: -0.0266, y: -0.0004, z: 0.032}
 --- !u!114 &2581230223891594217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,6 +595,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   checkpoint: {fileID: 0}
+  uiManager: {fileID: 0}
 --- !u!114 &5196903295295233163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,6 +608,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f41a0a8b92fcd342bc1f4fb5b67bb1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8526028733127997437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602283364899860806}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2747017162150732193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,11 +1460,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: rig_Eugene
       objectReference: {fileID: 0}
-    - target: {fileID: 4480761516421667190, guid: 56a3c25e9fc58fc45af38353f1091f6f,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3803c3d03a158bb458750747ab472492, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
