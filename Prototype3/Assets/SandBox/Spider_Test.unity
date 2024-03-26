@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 1760727657}
   - component: {fileID: 1760727656}
   - component: {fileID: 1760727659}
+  - component: {fileID: 1760727660}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -678,12 +679,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760727655}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9364658, z: -0.35075888, w: 0}
-  m_LocalPosition: {x: 0, y: 0.1327, z: 0.0863}
+  m_LocalRotation: {x: -0.110512875, y: 0.88877076, z: -0.3328944, w: -0.29505035}
+  m_LocalPosition: {x: -0.09678891, y: 0.1327, z: 0.06756637}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1895861588}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 41.068, y: 180, z: 0}
 --- !u!114 &1760727659
 MonoBehaviour:
@@ -716,7 +717,7 @@ MonoBehaviour:
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
+  m_UseScreenCoordOverride: 1
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
@@ -729,6 +730,25 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1760727660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760727655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6f69a9dfde8c4458f322d6f13ef409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1895861588}
+  followDistance: 0.3
+  followSpeed: 5
+  followLagClamp: 0.5
+  angleStandard: 60
+  angleWall: 20
+  floorAngleThreshold: 50
 --- !u!4 &1895861588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7913163690318173015, guid: 899832133d1f57f41a07cd72fa9022a0,
@@ -1071,11 +1091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7913163690318173015, guid: 899832133d1f57f41a07cd72fa9022a0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1760727658}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 899832133d1f57f41a07cd72fa9022a0, type: 3}
 --- !u!1660057539 &9223372036854775807
@@ -1084,3 +1100,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 59050484}
   - {fileID: 2132360820}
+  - {fileID: 1760727658}
