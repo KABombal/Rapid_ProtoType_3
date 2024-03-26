@@ -974,7 +974,7 @@ PrefabInstance:
     - target: {fileID: 621013340630957253, guid: cecd62f1cc6e0674d85763c0a309fa84,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.77
+      value: -9.05
       objectReference: {fileID: 0}
     - target: {fileID: 621013340630957253, guid: cecd62f1cc6e0674d85763c0a309fa84,
         type: 3}
@@ -1157,11 +1157,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2152536885134975489, guid: d268754b3267019468cdfe606aa41f70,
-        type: 3}
-      propertyPath: checkpoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8245829624744679664, guid: d268754b3267019468cdfe606aa41f70,
         type: 3}
       propertyPath: m_Name
