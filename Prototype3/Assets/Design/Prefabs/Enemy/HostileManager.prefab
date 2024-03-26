@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b1b8c5b73c23044805f0b108daa902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 8657146546482067205, guid: 4189a78a5456f8c4cbb79e859d87e573,
+  playerTransform: {fileID: 4411036926008756980, guid: 4ca7ff339a0e46d41b5a70390925f162,
     type: 3}
   sprayCanPrefab: {fileID: 7546066007517383028, guid: 4ca7ff339a0e46d41b5a70390925f162,
     type: 3}
