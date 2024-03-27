@@ -153,8 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   followDistance: 0.5
-  followSpeed: 5
-  followLagClamp: 0.7
+  followSpeed: 2
+  followLagClamp: 0.5
   angleStandard: 75
   angleStandardWall: 60
   angleWall: 10

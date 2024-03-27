@@ -51,20 +51,33 @@ public class CameraController : MonoBehaviour
     private Vector3 desiredPosition;
 
     private Vector3 targetLastPosition;
+    private Vector3 targetVel;
 
     private void Start()
     {
         targetLastPosition = target.position;
+        targetVel = -target.forward;
+        CalcFollowDeltaFree();
     }
 
     private void Update()
     {
         CalcMode();
 
+        Vector3 vel = target.position - targetLastPosition;
+        bool isMoving = vel.sqrMagnitude > 0;
+        Debug.Log("M" + isMoving);
+        if (isMoving)
+            targetVel = vel;
+
+        targetLastPosition = target.position;
+
+
         switch (mode)
         {
             case Mode.FreeFollow:
-                CalcFollowDeltaFree();
+
+                    CalcFollowDeltaFree();
                 break;
             case Mode.WallFollow:
                 CalcFollowDeltaWall();
@@ -80,9 +93,6 @@ public class CameraController : MonoBehaviour
         GotoDesiredPos();
 
         transform.LookAt(target.position);
-
-        if ((target.position - targetLastPosition).sqrMagnitude > 0.1f)
-            targetLastPosition = target.position;
     }
 
     private void CalcMode()
@@ -95,10 +105,8 @@ public class CameraController : MonoBehaviour
 
     private void CalcFollowDeltaFree()
     {
-        Vector3 vel = target.position - targetLastPosition;
-
         Vector3 desiredDelta = Vector3.forward * followDistance;
-        Quaternion look = Quaternion.LookRotation(Vector3.ProjectOnPlane(-vel, Vector3.up), Vector3.up);
+        Quaternion look = Quaternion.LookRotation(Vector3.ProjectOnPlane(-targetVel, Vector3.up), Vector3.up);
         Quaternion elevation = Quaternion.Euler(-angleStandard, 0, 0);
 
         followDelta = look * elevation * desiredDelta;
