@@ -16,7 +16,7 @@ public class ParticleCollisionHandler : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         int numCollisionEvents = ParticlePhysicsExtensions.GetCollisionEvents(partSystem, other, collisionEvents);
-
+        Debug.Log("Particle hit by: " + other.name);
         if (numCollisionEvents > 0)
         {
             // Handle the collision with the first particle collision event, for example
