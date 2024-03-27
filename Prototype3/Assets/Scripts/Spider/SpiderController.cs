@@ -84,6 +84,8 @@ public class SpiderController : MonoBehaviour
     private bool canTakeDamage = true;
     public UIManager uiManager;
 
+    public bool isActive = true;
+
     private void OnValidate()
     {
         GenRayCaches();
@@ -99,6 +101,7 @@ public class SpiderController : MonoBehaviour
 
     private void Update()
     {
+        if (!isActive) { return; }
         var scanData = ScanSurroundings();
 
 
