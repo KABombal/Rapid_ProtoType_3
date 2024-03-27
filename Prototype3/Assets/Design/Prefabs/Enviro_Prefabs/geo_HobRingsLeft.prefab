@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3637226380400722465
+--- !u!1 &4485496880457352877
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4121311201961924763}
-  - component: {fileID: 1053293822391899966}
-  - component: {fileID: 2988976659339191284}
-  - component: {fileID: 7456788584442245680}
+  - component: {fileID: 8821760965912729287}
+  - component: {fileID: 1847400197564549318}
+  - component: {fileID: 480276915134981107}
+  - component: {fileID: 5410455430298483024}
+  - component: {fileID: 1743704144655607328}
+  - component: {fileID: 3640652265556492875}
   m_Layer: 0
   m_Name: geo_HobRingsLeft
   m_TagString: Untagged
@@ -19,36 +21,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4121311201961924763
+--- !u!4 &8821760965912729287
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3637226380400722465}
+  m_GameObject: {fileID: 4485496880457352877}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.273, y: 0.922, z: 9.6}
+  m_LocalPosition: {x: -0.283, y: 0.924, z: 9.553}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1053293822391899966
+--- !u!33 &1847400197564549318
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3637226380400722465}
+  m_GameObject: {fileID: 4485496880457352877}
   m_Mesh: {fileID: -3424041892686000987, guid: 88c4e6f894e785145b6ec785a8b890f3, type: 3}
---- !u!23 &2988976659339191284
+--- !u!23 &480276915134981107
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3637226380400722465}
+  m_GameObject: {fileID: 4485496880457352877}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,17 +86,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &7456788584442245680
+--- !u!95 &5410455430298483024
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3637226380400722465}
+  m_GameObject: {fileID: 4485496880457352877}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 590d315695058f54484c4506d1ea53a2, type: 2}
+  m_Controller: {fileID: 9100000, guid: a7927d1d11bc32646a090bc0f1a64321, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -105,3 +107,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1743704144655607328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4485496880457352877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2442d2f60a38e364cb4924cd0ed75adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderController: {fileID: 0}
+--- !u!65 &3640652265556492875
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4485496880457352877}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.26089287, y: 0.032324314, z: 0.6480261}
+  m_Center: {x: 0, y: 0, z: 0}
