@@ -6657,17 +6657,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2117525077}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
 --- !u!1001 &2119921503
-=======
---- !u!1001 &6127157942216048982
->>>>>>> Stashed changes
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-<<<<<<< Updated upstream
     m_TransformParent: {fileID: 663529124}
     m_Modifications:
     - target: {fileID: 193391813872661839, guid: 3c70534fc312f1345a0bc2ce5008f623,
@@ -6686,95 +6681,46 @@ PrefabInstance:
       value: -0.7247522
       objectReference: {fileID: 0}
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
-=======
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5833191170357268298, guid: 7b0c19e776698b64bbe46f13e5f680ea,
-        type: 3}
-      propertyPath: m_Name
-      value: Dymaic_Bowl
-      objectReference: {fileID: 0}
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
->>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.9150001
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -6.9864264
       objectReference: {fileID: 0}
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
-=======
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
->>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
-=======
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
->>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
-=======
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
->>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
-=======
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
->>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
-=======
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
->>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 8342258715264107159, guid: 3c70534fc312f1345a0bc2ce5008f623,
-=======
-    - target: {fileID: 6609165332385322480, guid: 7b0c19e776698b64bbe46f13e5f680ea,
->>>>>>> Stashed changes
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
@@ -6783,11 +6729,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-<<<<<<< Updated upstream
   m_SourcePrefab: {fileID: 100100000, guid: 3c70534fc312f1345a0bc2ce5008f623, type: 3}
-=======
-  m_SourcePrefab: {fileID: 100100000, guid: 7b0c19e776698b64bbe46f13e5f680ea, type: 3}
->>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6801,10 +6743,4 @@ SceneRoots:
   - {fileID: 1630315846}
   - {fileID: 1510859432}
   - {fileID: 1096727961}
-<<<<<<< Updated upstream
   - {fileID: 1325573414}
-=======
-  - {fileID: 6127157942216048982}
-  - {fileID: 65589455}
-  - {fileID: 256058892}
->>>>>>> Stashed changes
