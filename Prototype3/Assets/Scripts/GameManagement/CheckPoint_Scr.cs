@@ -27,6 +27,9 @@ public class CheckPoint_Scr : MonoBehaviour
             return;
         }
         GameManager_Scr.Instance.CheckpointHit(id,gameObject);
-        
+        if(id == 3)
+        {
+            Destroy(gameObject);
+        }
     }
 }
