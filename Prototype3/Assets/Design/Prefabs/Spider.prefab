@@ -596,6 +596,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   checkpoint: {fileID: 0}
+  Flys_Score: 0
   uiManager: {fileID: 0}
   isActive: 1
 --- !u!114 &5196903295295233163
@@ -1709,7 +1710,7 @@ Animator:
   m_GameObject: {fileID: 1993231442676608965}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26b56881c53ca514d98130b7c80d0f4e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
