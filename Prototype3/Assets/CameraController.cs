@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class CameraController : MonoBehaviour
 {
@@ -53,8 +54,14 @@ public class CameraController : MonoBehaviour
     private Vector3 targetLastPosition;
     private Vector3 targetVel;
 
+
+    private DepthOfField DoF;
+
+
     private void Start()
     {
+        GetComponent<Volume>().profile.TryGet(out DoF);
+
         targetLastPosition = target.position;
         targetVel = Vector3.zero;
 
@@ -69,6 +76,10 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         CalcMode();
+
+
+
+        if (DoF) UpdateDoF();
 
         targetVel = target.position - targetLastPosition;
         bool isMoving = targetVel.sqrMagnitude > Mathf.Epsilon;
@@ -94,6 +105,12 @@ public class CameraController : MonoBehaviour
         GotoDesiredPos();
 
         transform.LookAt(target.position);
+    }
+
+    private void UpdateDoF()
+    {
+        float dist = Vector3.Distance(transform.position, target.position);
+        DoF.focusDistance.Override(dist);
     }
 
     private void CalcMode()
