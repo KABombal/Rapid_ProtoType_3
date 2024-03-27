@@ -56,27 +56,28 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         targetLastPosition = target.position;
-        targetVel = -target.forward;
-        CalcFollowDeltaFree();
+        targetVel = Vector3.zero;
+
+
+        Vector3 desiredDelta = Vector3.forward * followDistance;
+        Quaternion look = Quaternion.LookRotation(Vector3.ProjectOnPlane(target.forward, Vector3.up), Vector3.up);
+        Quaternion elevation = Quaternion.Euler(-angleStandard, 0, 0);
+
+        followDelta = look * elevation * desiredDelta;
     }
 
     private void Update()
     {
         CalcMode();
 
-        Vector3 vel = target.position - targetLastPosition;
-        bool isMoving = vel.sqrMagnitude > 0;
-
-        if (isMoving)
-            targetVel = vel;
-
+        targetVel = target.position - targetLastPosition;
+        bool isMoving = targetVel.sqrMagnitude > Mathf.Epsilon;
         targetLastPosition = target.position;
-
 
         switch (mode)
         {
             case Mode.FreeFollow:
-
+                if (isMoving)
                     CalcFollowDeltaFree();
                 break;
             case Mode.WallFollow:
@@ -105,8 +106,13 @@ public class CameraController : MonoBehaviour
 
     private void CalcFollowDeltaFree()
     {
+        Vector3 flatTargetVel = Vector3.ProjectOnPlane(-targetVel, Vector3.up);
+
+        if (flatTargetVel.sqrMagnitude <= Mathf.Epsilon) return;
+
         Vector3 desiredDelta = Vector3.forward * followDistance;
-        Quaternion look = Quaternion.LookRotation(Vector3.ProjectOnPlane(-targetVel, Vector3.up), Vector3.up);
+        
+        Quaternion look = Quaternion.LookRotation(flatTargetVel, Vector3.up);
         Quaternion elevation = Quaternion.Euler(-angleStandard, 0, 0);
 
         followDelta = look * elevation * desiredDelta;
@@ -116,7 +122,7 @@ public class CameraController : MonoBehaviour
     {
         int wallLayer = target.GetComponent<SpiderController>().CurrentGroundLayer;
         bool isOnActualWall = ((1 << wallLayer) & this.wallLayer.value) != 0;
-        Debug.Log(isOnActualWall);
+
         float angle = isOnActualWall ? angleWall : angleStandardWall;
 
         Vector3 desiredDelta = Vector3.forward * followDistance;
