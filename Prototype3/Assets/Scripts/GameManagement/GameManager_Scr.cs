@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager_Scr : MonoBehaviour
 {
 
@@ -36,9 +37,24 @@ public class GameManager_Scr : MonoBehaviour
 
     public void CheckpointHit(int _id, GameObject _Checkpoint)
     {
-        if(_id == 1)
+        //if(_id == 1)
+        //{
+        //    ChangeRespawnPoint(_Checkpoint);
+        //}
+        switch(_id)
         {
-            ChangeRespawnPoint(_Checkpoint);
+            case 0:     // None
+                Debug.Log("id not set for checkpoint");
+                break;
+                case 1: // RespawnPoint
+                ChangeRespawnPoint(_Checkpoint);
+                break;
+            case 2:     // DamageField
+                
+                break;
+            default:
+
+                break;
         }
     }
 
@@ -48,9 +64,10 @@ public class GameManager_Scr : MonoBehaviour
     {
         if (Player != null)
         {
-            
+            Player.GetComponent<SpiderController>().isActive = false;
             Player.transform.position = RespawnPoint.transform.position;
-           
+            Player.GetComponent<SpiderController>().isActive = true;
+
             Debug.Log("Player respawned");
         }
         else
