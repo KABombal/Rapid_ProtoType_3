@@ -61,5 +61,9 @@ public class Swatter : MonoBehaviour
         {
             Debug.LogError("SpiderController reference not set on Swatter.");
         }
+
+        // Stop descending and disable or destroy the swatter
+        isDescending = false;
+        Invoke("Destroy(gameObject)", 1.5f);  // or use Destroy(gameObject); to completely remove the object
     }
 }
