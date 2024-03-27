@@ -2534,6 +2534,7 @@ MonoBehaviour:
   deathScreen: {fileID: 2104255253}
   victoryScreen: {fileID: 540408506}
   warningMessage: {fileID: 503699342}
+  pauseScreen: {fileID: 1166895603}
   onShowDeathScreen:
     m_PersistentCalls:
       m_Calls:
@@ -2558,6 +2559,7 @@ MonoBehaviour:
   onHideVictoryScreen:
     m_PersistentCalls:
       m_Calls: []
+  aaaaaaaah: {fileID: 1408569952}
 --- !u!4 &561274829
 Transform:
   m_ObjectHideFlags: 0
@@ -4013,6 +4015,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 819194890a5ec3c46a5ed20c6bdcf131, type: 3}
+--- !u!1 &1166895603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1463102172280062186, guid: 819194890a5ec3c46a5ed20c6bdcf131,
+    type: 3}
+  m_PrefabInstance: {fileID: 1166895602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1249475759
 GameObject:
   m_ObjectHideFlags: 0
@@ -5060,6 +5068,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1766057865}
   m_SourcePrefab: {fileID: 100100000, guid: 899832133d1f57f41a07cd72fa9022a0, type: 3}
+--- !u!114 &1408569952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5196903295295233163, guid: 899832133d1f57f41a07cd72fa9022a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1408569951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766057859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f41a0a8b92fcd342bc1f4fb5b67bb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1424883445
 PrefabInstance:
   m_ObjectHideFlags: 0
