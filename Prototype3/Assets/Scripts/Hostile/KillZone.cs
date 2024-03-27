@@ -3,27 +3,19 @@ using UnityEngine;
 public class KillZone : MonoBehaviour
 {
     public Transform checkpoint;
-    public GameObject swatterPrefab; // Reference to the swatter prefab
-    private bool playerKilled = false; // Flag to track if player was killed
+    public GameObject swatterPrefab;
+    public Transform playerTransform;
 
-    public float killHeightUpper = 1.6f;
-    public float killHeightLower = 0.45f;
-
-    private void Update()
+    private void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            float playerHeight = player.transform.position.y;
-            if ((playerHeight > killHeightUpper || playerHeight < killHeightLower) && !playerKilled)
-            {
-                playerKilled = true;
-                // Instantiate and activate the swatter
-                GameObject swatterInstance = Instantiate(swatterPrefab, CalculateSwatterSpawnPosition(player.transform.position), swatterPrefab.transform.rotation);
-                swatterInstance.GetComponent<Swatter>().ActivateSwatter(player.transform);
-
-                Debug.Log("Player entered the kill zone. Swatter activated.");
-            }
+            playerTransform = player.transform;
+        }
+        else
+        {
+            Debug.LogError("Player object not found.");
         }
     }
 
@@ -31,5 +23,18 @@ public class KillZone : MonoBehaviour
     {
         // Adjust y position to be a bit above the player
         return new Vector3(playerPosition.x, playerPosition.y + 1f, playerPosition.z);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Spider")
+        {
+            // Instantiate and activate the swatter
+            GameObject swatterInstance = Instantiate(swatterPrefab, CalculateSwatterSpawnPosition(playerTransform.position), Quaternion.identity);
+            swatterInstance.GetComponent<Swatter>().ActivateSwatter(playerTransform);
+
+            Debug.Log("Player entered the kill zone. Swatter activated.");
+        }
+
     }
 }
