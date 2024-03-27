@@ -9,7 +9,7 @@ public class DecalManager : MonoBehaviour
 
     public void CreateDecal(Vector3 position)
     {
-        GameObject decal = Instantiate(decalPrefab, position, Quaternion.identity);
+        GameObject decal = Instantiate(decalPrefab, position, decalPrefab.transform.rotation);
         decal.transform.localScale = new Vector3(10f, 1f, 10f); // Set the size of the decal
         Destroy(decal, decalLifetime);
     }
