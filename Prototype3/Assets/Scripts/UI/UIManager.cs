@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     }
     public void ShowDeathScreen()
     {
+        HideWarningMessage();
         onShowDeathScreen?.Invoke();  // Trigger the event
         aaaaaaaah.enabled = false;
         PauseGame();
@@ -45,6 +46,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowVictoryScreen()
     {
+        HideWarningMessage();
         victoryScreen.SetActive(true);
         aaaaaaaah.enabled = false;
         PauseGame();
