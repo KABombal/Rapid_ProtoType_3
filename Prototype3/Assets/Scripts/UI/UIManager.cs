@@ -10,36 +10,45 @@ public class UIManager : MonoBehaviour
     public GameObject deathScreen;
     public GameObject victoryScreen;
     public GameObject warningMessage;  // Reference to warning text element
+    public GameObject pauseScreen;
 
     public UnityEvent onShowDeathScreen;
     public UnityEvent onHideDeathScreen;
     public UnityEvent onShowVictoryScreen;
     public UnityEvent onHideVictoryScreen;
 
+    public SpiderDriver aaaaaaaah;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            PauseScreen(!pauseScreen.activeInHierarchy);
+    }
     public void ShowDeathScreen()
     {
         onShowDeathScreen?.Invoke();  // Trigger the event
-        // Unlock the cursor and make it visible
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        aaaaaaaah.enabled = false;
         PauseGame();
     }
 
     public void HideDeathScreen()
     {
         onHideDeathScreen?.Invoke();  // Trigger the event
+        aaaaaaaah.enabled = true;
         UnpauseGame();
     }
 
     public void ShowVictoryScreen()
     {
         victoryScreen.SetActive(true);
+        aaaaaaaah.enabled = false;
         PauseGame();
     }
 
     public void HideVictoryScreen()
     {
         victoryScreen.SetActive(false);
+        aaaaaaaah.enabled = true;
         UnpauseGame();
     }
 
@@ -50,6 +59,12 @@ public class UIManager : MonoBehaviour
         HideDeathScreen();
     }
 
+    public void RestartCheckpoint()
+    {
+        GameManager_Scr.Instance.OnPlayerDeath();
+
+        PauseScreen(false);
+    }
     public void ReturnToMenu()
     {
         UnpauseGame();
@@ -75,6 +90,14 @@ public class UIManager : MonoBehaviour
     private void PauseGame()
     {
         Time.timeScale = 0;
+    }
+    public void PauseScreen(bool paused)
+    {
+        Time.timeScale = paused ? 0 : 1;
+
+        pauseScreen.gameObject.SetActive(paused);
+
+        aaaaaaaah.enabled = !paused;
     }
 
     private void UnpauseGame()
