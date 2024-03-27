@@ -27,7 +27,6 @@ public class KillZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter called with: " + other.gameObject.name);
         if (other.gameObject.name == "Spider")
         {
             // Instantiate and activate the swatter

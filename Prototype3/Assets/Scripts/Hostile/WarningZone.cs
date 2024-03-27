@@ -26,7 +26,6 @@ public class WarningZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter called with: " + other.gameObject.name);
         if (other.gameObject.name == "Spider")
         {
             // Show warning message
