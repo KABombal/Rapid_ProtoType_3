@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     public SpiderDriver aaaaaaaah;
     public Image[] liveIcons;
     public Image[] deathIcons;
+    public Image[] flyImages; 
 
 
     private void Update()
@@ -121,6 +122,14 @@ public class UIManager : MonoBehaviour
 
             liveIcons[i].enabled = live;
             deathIcons[i].enabled = !live;
+        }
+    }
+
+    public void UpdateFlyDisplay(int collectedFlies)
+    {
+        for (int i = 0; i < flyImages.Length; i++)
+        {
+            flyImages[i].color = new Color(1, 1, 1, i < collectedFlies ? 1.0f : 0.5f);
         }
     }
 }

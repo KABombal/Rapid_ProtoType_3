@@ -309,5 +309,9 @@ public class SpiderController : MonoBehaviour
     {
         Flys_Score += _delta;
         Debug.Log("Number of collected flys: " + Flys_Score);
+
+        // Update the UI
+        if (uiManager != null)
+            uiManager.UpdateFlyDisplay(Flys_Score);
     }
 }
