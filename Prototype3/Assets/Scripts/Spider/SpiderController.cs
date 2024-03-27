@@ -271,6 +271,14 @@ public class SpiderController : MonoBehaviour
         }
     }
 
+    public void Warp(Vector3 location)
+    {
+        transform.position = location;
+        moveWaypoint = location;
+        transform.rotation = Quaternion.identity;
+
+    }
+
     void ResetDamageCooldown()
     {
         Debug.Log("Can take damage reset.");

@@ -50,7 +50,7 @@ public class GameManager_Scr : MonoBehaviour
                 ChangeRespawnPoint(_Checkpoint);
                 break;
             case 2:     // DamageField
-                
+                Player.GetComponent<SpiderController>().HandleParticleCollision();
                 break;
             default:
 
@@ -65,7 +65,7 @@ public class GameManager_Scr : MonoBehaviour
         if (Player != null)
         {
             Player.GetComponent<SpiderController>().isActive = false;
-            Player.transform.position = RespawnPoint.transform.position;
+            Player.GetComponent<SpiderController>().Warp(RespawnPoint.transform.position);
             Player.GetComponent<SpiderController>().isActive = true;
 
             Debug.Log("Player respawned");
