@@ -31,6 +31,7 @@ public class Swatter : MonoBehaviour
             if (Vector3.Distance(swatterTop.position, targetPosition) <= killDistance)
             {
                 KillPlayer();
+                Destroy(gameObject);
             }
         }
     }

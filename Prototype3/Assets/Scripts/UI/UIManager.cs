@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
+        UnpauseGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         // Hide death screen if needed
         HideDeathScreen();

@@ -66,7 +66,7 @@ public class CameraController : MonoBehaviour
 
         Vector3 vel = target.position - targetLastPosition;
         bool isMoving = vel.sqrMagnitude > 0;
-        Debug.Log("M" + isMoving);
+
         if (isMoving)
             targetVel = vel;
 
