@@ -2939,10 +2939,25 @@ PrefabInstance:
       propertyPath: spiderController
       value: 
       objectReference: {fileID: 1766057870}
+    - target: {fileID: 1743704144655607328, guid: 7dae4c3fecd7efb43a2e81fa892b858e,
+        type: 3}
+      propertyPath: spiderController
+      value: 
+      objectReference: {fileID: 1766057870}
     - target: {fileID: 3637226380400722465, guid: 7dae4c3fecd7efb43a2e81fa892b858e,
         type: 3}
       propertyPath: m_Name
       value: geo_HobRingsLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640652265556492875, guid: 7dae4c3fecd7efb43a2e81fa892b858e,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640652265556492875, guid: 7dae4c3fecd7efb43a2e81fa892b858e,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4121311201961924763, guid: 7dae4c3fecd7efb43a2e81fa892b858e,
         type: 3}
@@ -4124,6 +4139,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 56121158213518000, guid: f7fb8bd096ec66747a7f77998550d762,
+        type: 3}
+      propertyPath: spiderController
+      value: 
+      objectReference: {fileID: 1766057870}
     - target: {fileID: 3637226380400722465, guid: f7fb8bd096ec66747a7f77998550d762,
         type: 3}
       propertyPath: m_Name
@@ -4178,6 +4198,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219252321223239070, guid: f7fb8bd096ec66747a7f77998550d762,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219252321223239070, guid: f7fb8bd096ec66747a7f77998550d762,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
