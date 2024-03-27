@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 6224726799387052871}
   - component: {fileID: 2608997174778508045}
   - component: {fileID: 4461459916358071598}
+  - component: {fileID: 4431291981622567159}
   m_Layer: 5
   m_Name: fly8
   m_TagString: Untagged
@@ -150,6 +151,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4431291981622567159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170128764547843814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
 --- !u!1 &214515148272202689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,6 +1649,7 @@ GameObject:
   - component: {fileID: 6060147616799477534}
   - component: {fileID: 5563054190832647496}
   - component: {fileID: 8435506520366574207}
+  - component: {fileID: 8310303420507418186}
   m_Layer: 5
   m_Name: fly3
   m_TagString: Untagged
@@ -1698,6 +1714,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8310303420507418186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2748703350256859110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
 --- !u!1 &2808830958183978197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,6 +2508,7 @@ GameObject:
   - component: {fileID: 8842969726705845587}
   - component: {fileID: 2664387609158353932}
   - component: {fileID: 4972133457197411239}
+  - component: {fileID: 6576740984067296904}
   m_Layer: 5
   m_Name: fly5
   m_TagString: Untagged
@@ -2542,6 +2573,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6576740984067296904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191492862015577796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
 --- !u!1 &4195216178963085224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,6 +2598,7 @@ GameObject:
   - component: {fileID: 1640430596745494319}
   - component: {fileID: 5495543854991477651}
   - component: {fileID: 8450022243419410677}
+  - component: {fileID: 3947608771389379196}
   m_Layer: 5
   m_Name: fly1
   m_TagString: Untagged
@@ -2617,6 +2663,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3947608771389379196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4195216178963085224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
 --- !u!1 &4586124651804425031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2704,6 +2764,7 @@ GameObject:
   - component: {fileID: 6518568440822056630}
   - component: {fileID: 8324126438357938071}
   - component: {fileID: 1261216981048961625}
+  - component: {fileID: 4042200187796820760}
   m_Layer: 5
   m_Name: fly2
   m_TagString: Untagged
@@ -2768,6 +2829,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4042200187796820760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594083578348894036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
 --- !u!1 &5077283883264485484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2779,6 +2854,7 @@ GameObject:
   - component: {fileID: 5513224005539379489}
   - component: {fileID: 2757242781219677663}
   - component: {fileID: 3279440598396551417}
+  - component: {fileID: 8878716640879197071}
   m_Layer: 5
   m_Name: fly6
   m_TagString: Untagged
@@ -2843,6 +2919,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8878716640879197071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5077283883264485484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
 --- !u!1 &5344825602790014614
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,6 +3512,7 @@ GameObject:
   - component: {fileID: 3990429181143716794}
   - component: {fileID: 9010510240449466080}
   - component: {fileID: 6774091656424902977}
+  - component: {fileID: 1779021313654265466}
   m_Layer: 5
   m_Name: FklyPanel
   m_TagString: Untagged
@@ -3494,6 +3585,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1779021313654265466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580532468583336394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &6839355751354539066
 GameObject:
   m_ObjectHideFlags: 0
@@ -3836,6 +3953,7 @@ GameObject:
   - component: {fileID: 8175436607438952088}
   - component: {fileID: 7309544819941937224}
   - component: {fileID: 7507435735055476173}
+  - component: {fileID: 2447894839069638683}
   m_Layer: 5
   m_Name: fly7
   m_TagString: Untagged
@@ -3900,6 +4018,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2447894839069638683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7070137179804145871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
 --- !u!1 &7348610022853367826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4593,6 +4725,7 @@ GameObject:
   - component: {fileID: 9167868510950420828}
   - component: {fileID: 3815161425699458496}
   - component: {fileID: 5367158375342950553}
+  - component: {fileID: 2690126117888873874}
   m_Layer: 5
   m_Name: fly4
   m_TagString: Untagged
@@ -4657,3 +4790,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2690126117888873874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976736623900970241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1
