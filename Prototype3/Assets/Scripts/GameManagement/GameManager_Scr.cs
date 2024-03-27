@@ -77,9 +77,9 @@ public class GameManager_Scr : MonoBehaviour
     {
         if (Player != null)
         {
-            Player.GetComponent<SpiderController>().isActive = false;
+            //Player.GetComponent<SpiderController>().isActive = false;
             Player.GetComponent<SpiderController>().Warp(RespawnPoint.transform.position);
-            Player.GetComponent<SpiderController>().isActive = true;
+            //Player.GetComponent<SpiderController>().isActive = true;
 
             Debug.Log("Player respawned");
         }
