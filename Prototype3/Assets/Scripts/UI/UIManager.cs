@@ -22,9 +22,12 @@ public class UIManager : MonoBehaviour
     public SpiderDriver aaaaaaaah;
     public Image[] liveIcons;
     public Image[] deathIcons;
-    public Image[] flyImages; 
+    public Image[] flyImages;
 
-
+    public AudioClip winClip;
+    public AudioClip looseclip;
+    public AudioSource music;
+    public AudioSource endMusic;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -32,10 +35,12 @@ public class UIManager : MonoBehaviour
     }
     public void ShowDeathScreen()
     {
+        music.Pause();
         HideWarningMessage();
         onShowDeathScreen?.Invoke();  // Trigger the event
         aaaaaaaah.enabled = false;
         PauseGame();
+        endMusic.PlayOneShot(looseclip);
     }
 
     public void HideDeathScreen()
@@ -47,10 +52,12 @@ public class UIManager : MonoBehaviour
 
     public void ShowVictoryScreen()
     {
+        music.Pause();
         HideWarningMessage();
         victoryScreen.SetActive(true);
         aaaaaaaah.enabled = false;
         PauseGame();
+        endMusic.PlayOneShot(winClip);
     }
 
     public void HideVictoryScreen()

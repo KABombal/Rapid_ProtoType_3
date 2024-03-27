@@ -87,6 +87,10 @@ public class SpiderController : MonoBehaviour
 
     public bool isActive = true;
 
+    private AudioSource source;
+    [SerializeField]
+    private AudioClip clip;
+
     private void OnValidate()
     {
         GenRayCaches();
@@ -98,6 +102,8 @@ public class SpiderController : MonoBehaviour
 
         var scanData = ScanSurroundings();
         moveWaypoint = scanData.surfaceWaypoint.HasValue ? scanData.surfaceWaypoint.Value : moveWaypoint;
+
+        source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -241,11 +247,11 @@ public class SpiderController : MonoBehaviour
             Gizmos.DrawLine(worldOrigin, worldOrigin + transform.rotation * ray.direction * surfaceScannerRange);
         }
     }
-    public void HandleParticleCollision()
+    public void HandleParticleCollision(bool ignoreCooldown = false)
     {
        
         Debug.Log("HandleParticleCollision called. Can take damage: " + canTakeDamage);
-        if (canTakeDamage)
+        if (canTakeDamage || ignoreCooldown)
         {
             LoseLife();
             if (lives > 0)
@@ -280,7 +286,7 @@ public class SpiderController : MonoBehaviour
 
     }
 
-    void ResetDamageCooldown()
+    public void ResetDamageCooldown()
     {
         Debug.Log("Can take damage reset.");
         canTakeDamage = true;
@@ -291,6 +297,7 @@ public class SpiderController : MonoBehaviour
         Debug.Log("LoseLife called.");
         Debug.Log("UIManager reference: " + (uiManager == null ? "null" : "not null"));
 
+        source.PlayOneShot(clip);
         if (lives > 0)
         {
             lives--;

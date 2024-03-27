@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPoint_Scr : MonoBehaviour
 {
     [SerializeField] private int id = 0;
+    [SerializeField] private bool ignoreDamageCooldown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,7 @@ public class CheckPoint_Scr : MonoBehaviour
             Debug.Log(other.gameObject.name);
             return;
         }
-        GameManager_Scr.Instance.CheckpointHit(id,gameObject);
+        GameManager_Scr.Instance.CheckpointHit(id,gameObject, ignoreDamageCooldown);
         if(id == 3)
         {
             Destroy(gameObject.transform.parent.gameObject);

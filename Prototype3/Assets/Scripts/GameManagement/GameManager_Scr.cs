@@ -35,7 +35,7 @@ public class GameManager_Scr : MonoBehaviour
         
     }
 
-    public void CheckpointHit(int _id, GameObject _Checkpoint)
+    public void CheckpointHit(int _id, GameObject _Checkpoint, bool ignoreDamageCooldown)
     {
         //if(_id == 1)
         //{
@@ -50,7 +50,7 @@ public class GameManager_Scr : MonoBehaviour
                 ChangeRespawnPoint(_Checkpoint);
                 break;
             case 2:     // DamageField
-                Player.GetComponent<SpiderController>().HandleParticleCollision();
+                Player.GetComponent<SpiderController>().HandleParticleCollision(ignoreDamageCooldown);
                 break;
             case 3:     // Fly
                 Player.GetComponent<SpiderController>().AddScore(1);
