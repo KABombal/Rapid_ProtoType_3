@@ -5,12 +5,13 @@ public class Swatter : MonoBehaviour
     public float speed = 0.5f;             // Speed of swatter's approach
     public AudioClip squashSound;          // Squash sound clip
     public Transform swatterTop;           // Transform of the top part of the swatter
-    public SpiderController spiderController; // Direct reference to the player controller script
+    public SpiderController spiderController;
+
     public Vector3 spawnOffset = new Vector3(0, 10, 0); // Offset for the initial spawn position
 
     private bool isDescending = false;     // Flag to control swatter's movement
-    private Transform target;              // Player's transform
-    private AudioSource audioSource;       // Audio source for squash sound
+    public Transform target;              // Player's transform
+    public AudioSource audioSource;       // Audio source for squash sound
     private float killDistance = 0.1f;     // Distance at which the swatter will kill the player
 
     void Start()
@@ -60,9 +61,5 @@ public class Swatter : MonoBehaviour
         {
             Debug.LogError("SpiderController reference not set on Swatter.");
         }
-
-        // Stop descending and disable or destroy the swatter
-        isDescending = false;
-        gameObject.SetActive(false); // or use Destroy(gameObject); to completely remove the object
     }
 }
