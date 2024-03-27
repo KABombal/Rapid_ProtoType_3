@@ -81,7 +81,7 @@ public class CameraController : MonoBehaviour
 
         transform.LookAt(target.position);
 
-        if ((target.position - targetLastPosition).sqrMagnitude > 0.0001f)
+        if ((target.position - targetLastPosition).sqrMagnitude > 0.01f)
             targetLastPosition = target.position;
     }
 
