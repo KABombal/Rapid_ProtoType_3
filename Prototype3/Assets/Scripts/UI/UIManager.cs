@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using System;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,6 +20,9 @@ public class UIManager : MonoBehaviour
     public UnityEvent onHideVictoryScreen;
 
     public SpiderDriver aaaaaaaah;
+    public Image[] liveIcons;
+    public Image[] deathIcons;
+
 
     private void Update()
     {
@@ -103,5 +108,16 @@ public class UIManager : MonoBehaviour
     private void UnpauseGame()
     {
         Time.timeScale = 1;
+    }
+
+    public void SetLives(int lives)
+    {
+        for (int i = 0; i < liveIcons.Length; i++)
+        {
+            bool live = i < lives;
+
+            liveIcons[i].enabled = live;
+            deathIcons[i].enabled = !live;
+        }
     }
 }

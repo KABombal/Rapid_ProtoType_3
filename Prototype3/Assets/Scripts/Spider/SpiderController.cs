@@ -294,8 +294,10 @@ public class SpiderController : MonoBehaviour
         {
             lives--;
             Debug.Log("Life lost. Remaining lives: " + lives);
+
+            uiManager.SetLives(lives);
         }
-        else
+        
         if (lives <= 0)
         {
             uiManager.ShowDeathScreen();
