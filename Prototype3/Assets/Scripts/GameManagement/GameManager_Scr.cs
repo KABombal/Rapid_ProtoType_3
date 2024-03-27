@@ -52,6 +52,19 @@ public class GameManager_Scr : MonoBehaviour
             case 2:     // DamageField
                 Player.GetComponent<SpiderController>().HandleParticleCollision();
                 break;
+            case 3:     // Fly
+                Player.GetComponent<SpiderController>().AddScore(1);
+                break;
+            case 4:
+                if (Player.GetComponent<SpiderController>().Flys_Score > 6)
+                {
+                    Debug.Log("You win");//Add cutscene here
+                }
+                else
+                {
+                    Debug.Log("Not enough fly's. Your children will starve");
+                }
+                break;
             default:
 
                 break;
