@@ -127,6 +127,14 @@ public class SpiderController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, moveWaypoint, Time.deltaTime * movementSpeed);
     }
 
+    public void Warp(Vector3 location)
+    {
+        transform.position = location;
+        moveWaypoint = location;
+        transform.rotation = Quaternion.identity;
+
+    }
+
     private void GenRayCaches()
     {
         rayCache = new Ray[surfaceScannerRayCount];
