@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6222223059759787522}
   - component: {fileID: 2835791425056299330}
   - component: {fileID: 6585055580838325689}
-  - component: {fileID: 1419689744271197489}
+  - component: {fileID: 1572153211326993392}
   m_Layer: 0
   m_Name: kill_grunge
   m_TagString: Untagged
@@ -109,7 +109,7 @@ CapsuleCollider:
   m_Height: 4.84
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1419689744271197489
+--- !u!114 &1572153211326993392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,8 +118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 408282752922189401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2442d2f60a38e364cb4924cd0ed75adc, type: 3}
+  m_Script: {fileID: 11500000, guid: 91faa9cb3f7b291408f827ff103afe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spiderController: {fileID: 2581230223891594217, guid: 899832133d1f57f41a07cd72fa9022a0,
-    type: 3}
+  id: 2

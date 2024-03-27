@@ -81,6 +81,7 @@ public class SpiderController : MonoBehaviour
 
     public Transform checkpoint;
     private int lives = 3;
+    public int Flys_Score = 0;
     private bool canTakeDamage = true;
     public UIManager uiManager;
 
@@ -304,4 +305,9 @@ public class SpiderController : MonoBehaviour
         }
     }
 
+    public void AddScore(int _delta)
+    {
+        Flys_Score += _delta;
+        Debug.Log("Number of collected flys: " + Flys_Score);
+    }
 }
