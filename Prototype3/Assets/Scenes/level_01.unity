@@ -6555,6 +6555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 193391813872661839, guid: 3c70534fc312f1345a0bc2ce5008f623,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7671432617628289082, guid: 3c70534fc312f1345a0bc2ce5008f623,
         type: 3}
       propertyPath: id

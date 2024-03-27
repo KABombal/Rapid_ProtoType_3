@@ -48,9 +48,9 @@ public class GameManager_Scr : MonoBehaviour
     {
         if (Player != null)
         {
-            
+            Player.GetComponent<SpiderController>().isActive = false;
             Player.transform.position = RespawnPoint.transform.position;
-           
+            
             Debug.Log("Player respawned");
         }
         else
