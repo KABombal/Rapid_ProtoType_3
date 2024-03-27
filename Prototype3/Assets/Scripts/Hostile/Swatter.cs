@@ -56,7 +56,8 @@ public class Swatter : MonoBehaviour
         // Call the player's death handling method
         if (spiderController != null)
         {
-            spiderController.LoseLife();
+            //spiderController.LoseLife();
+            spiderController.HandleParticleCollision();
         }
         else
         {

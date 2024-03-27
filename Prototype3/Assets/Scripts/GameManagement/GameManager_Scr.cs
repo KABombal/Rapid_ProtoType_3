@@ -59,6 +59,7 @@ public class GameManager_Scr : MonoBehaviour
                 if (Player.GetComponent<SpiderController>().Flys_Score > 6)
                 {
                     Debug.Log("You win");//Add cutscene here
+                    UI_Manager.GetComponent<UIManager>().ShowVictoryScreen();
                 }
                 else
                 {
